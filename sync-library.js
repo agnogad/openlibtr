@@ -6,8 +6,18 @@ const LIB_INDEX_PATH = path.join(__dirname, 'library.json');
 
 function syncLibrary() {
     if (!fs.existsSync(BOOKS_DIR)) {
-        console.log("❌ 'books' klasörü bulunamadı! Lütfen oluşturun.");
+        console.log("❌ 'books' klasörü bulunamadı!");
         return;
+    }
+
+    // 1. Mevcut kütüphaneyi oku (Eğer dosya yoksa boş dizi başlat)
+    let oldLibrary = [];
+    if (fs.existsSync(LIB_INDEX_PATH)) {
+        try {
+            oldLibrary = JSON.parse(fs.readFileSync(LIB_INDEX_PATH, 'utf-8'));
+        } catch (e) {
+            oldLibrary = [];
+        }
     }
 
     const libraryIndex = [];
@@ -16,22 +26,16 @@ function syncLibrary() {
     bookFolders.forEach(folder => {
         const folderPath = path.join(BOOKS_DIR, folder);
         
-        // Sadece klasörleri işle
         if (fs.lstatSync(folderPath).isDirectory()) {
-            console.log(`📖 İşleniyor: ${folder}`);
-
-            // Klasör içindeki .md dosyalarını bul ve sırala
             const files = fs.readdirSync(folderPath)
                 .filter(file => file.endsWith('.md'))
                 .sort((a, b) => {
-                    // Dosya isimlerindeki sayıları alıp ona göre sıralar (bolum-1, bolum-2 vb.)
                     const numA = parseInt(a.match(/\d+/) || 0);
                     const numB = parseInt(b.match(/\d+/) || 0);
                     return numA - numB;
                 });
 
             const chapters = files.map((file, index) => {
-                // Dosya adından temiz başlık oluştur (bolum-1.md -> Bölüm 1)
                 const cleanTitle = file.replace('.md', '').replace(/-/g, ' ');
                 return {
                     id: index + 1,
@@ -40,7 +44,7 @@ function syncLibrary() {
                 };
             });
 
-            // Her kitap için özel config.json oluştur
+            // Config.json güncelleme (İçerik değişmese de yazılabilir, maliyeti düşüktür)
             const configPath = path.join(folderPath, 'config.json');
             fs.writeFileSync(configPath, JSON.stringify({
                 slug: folder,
@@ -48,19 +52,29 @@ function syncLibrary() {
                 chapters: chapters
             }, null, 2));
 
-            // Ana kütüphane listesine ekle
+            // 2. Değişiklik kontrolü
+            const oldBookData = oldLibrary.find(b => b.slug === folder);
+            let lastUpdated = oldBookData ? oldBookData.lastUpdated : new Date().toISOString();
+
+            // Eğer bölüm sayısı değişmişse tarihi güncelle
+            if (oldBookData && oldBookData.chapterCount !== chapters.length) {
+                console.log(`✨ ${folder} güncellendi (Yeni bölümler eklendi).`);
+                lastUpdated = new Date().toISOString();
+            } else if (!oldBookData) {
+                console.log(`🆕 ${folder} kütüphaneye yeni eklendi.`);
+            }
+
             libraryIndex.push({
                 title: folder.replace(/-/g, ' ').toUpperCase(),
                 slug: folder,
                 chapterCount: chapters.length,
-                lastUpdated: new Date().toISOString()
+                lastUpdated: lastUpdated
             });
         }
     });
 
-    // Ana library.json dosyasını güncelle
     fs.writeFileSync(LIB_INDEX_PATH, JSON.stringify(libraryIndex, null, 2));
-    console.log(`\n✅ Başarılı! library.json ve tüm config.json dosyaları güncellendi.`);
+    console.log(`\n✅ İşlem tamamlandı.`);
 }
 
 syncLibrary();
