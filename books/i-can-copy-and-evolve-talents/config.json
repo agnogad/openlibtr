@@ -1,0 +1,11 @@
+{
+  "slug": "i-can-copy-and-evolve-talents",
+  "total_chapters": 1,
+  "chapters": [
+    {
+      "id": 1,
+      "title": "Ch1",
+      "path": "ch1.md"
+    }
+  ]
+}
