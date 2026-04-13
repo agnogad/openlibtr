@@ -1,11 +1,16 @@
 {
   "slug": "i-have-a-cultivation-world",
-  "total_chapters": 1,
+  "total_chapters": 2,
   "chapters": [
     {
       "id": 1,
       "title": "Ch1",
       "path": "ch1.md"
+    },
+    {
+      "id": 2,
+      "title": "Ch2",
+      "path": "ch2.md"
     }
   ]
 }
