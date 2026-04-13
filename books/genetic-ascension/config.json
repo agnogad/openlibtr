@@ -1,0 +1,31 @@
+{
+  "slug": "genetic-ascension",
+  "total_chapters": 5,
+  "chapters": [
+    {
+      "id": 1,
+      "title": "Ch1",
+      "path": "ch1.md"
+    },
+    {
+      "id": 2,
+      "title": "Ch2",
+      "path": "ch2.md"
+    },
+    {
+      "id": 3,
+      "title": "Ch3",
+      "path": "ch3.md"
+    },
+    {
+      "id": 4,
+      "title": "Ch4",
+      "path": "ch4.md"
+    },
+    {
+      "id": 5,
+      "title": "Ch5",
+      "path": "ch5.md"
+    }
+  ]
+}

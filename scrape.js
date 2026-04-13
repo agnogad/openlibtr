@@ -33,6 +33,48 @@ async function start() {
             message: 'Kitap seçin:',
             choices: folders
         }]);
+        
+        const novelPath = path.join(BOOKS_DIR, selectedNovel);
+const files = await fs.readdir(novelPath);
+
+// Dosya listesinde 'Cover.jpg' var mı bak (Büyük/küçük harf duyarlı)
+const hasCover = files.includes('cover.jpg');
+
+if (!hasCover) {
+    console.log(" ¯\_(ツ)_/¯  Kapak fotoğrafı yok, 🔍 kendim indiriyorum...");
+    const curlCmd = `curl -s -L -A "${USER_AGENT}" -H "Referer: https://novelbin.com/" "https://novelbin.com/b/${selectedNovel}"`;
+const html = execSync(curlCmd, { encoding: 'utf-8', maxBuffer: 1024 * 1024 * 10 });
+const $ = cheerio.load(html);
+
+// 1. '.book' class'ı içindeki img etiketinin 'src' attribute'unu al
+let imageUrl = $('.book img').attr('src') || $('.book img').attr('data-src');
+
+
+if (imageUrl) {
+    // Eğer URL protokol içermiyorsa (örn: //resim.com), başına https: ekle
+    if (imageUrl.startsWith('//')) {
+        imageUrl = 'https:' + imageUrl;
+    }
+
+    console.log(`📸 Resim bulundu: ${imageUrl}`);
+
+    // 2. Resmi indir ve 'cover.jpg' olarak kaydet
+    const coverPath = path.join(novelPath, 'cover.jpg');
+    
+    try {
+        // -o parametresi çıktıyı belirtilen dosya yoluna yazar
+        const downloadCmd = `curl -s -L -A "${USER_AGENT}" -H "Referer: https://novelbin.com/" "${imageUrl}" -o "${coverPath}"`;
+        execSync(downloadCmd);
+        console.log("✅ Kapak fotoğrafı başarıyla indirildi.");
+    } catch (downloadError) {
+        console.error("❌ Resim indirilirken hata oluştu:", downloadError.message);
+    }
+} else {
+    console.log("⚠️ Sayfada kapak resmi bulunamadı.");
+}
+
+}
+
 
         const novelUrl = `https://novelbin.com/ajax/chapter-archive?novelId=${selectedNovel}`; 
 
@@ -46,8 +88,8 @@ async function start() {
         
         console.log(`✅ Toplam ${allChapterLinks.length} adet bölüm linki toplandı.`);
 
-        const novelPath = path.join(BOOKS_DIR, selectedNovel);
-        const files = await fs.readdir(novelPath);
+        
+        
         let lastChapterIdx = 0;
 
         files.forEach(file => {
