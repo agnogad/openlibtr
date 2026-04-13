@@ -1,6 +1,6 @@
 {
   "slug": "i-can-copy-and-evolve-talents",
-  "total_chapters": 10,
+  "total_chapters": 13,
   "chapters": [
     {
       "id": 1,
@@ -51,6 +51,21 @@
       "id": 10,
       "title": "Ch10",
       "path": "ch10.md"
+    },
+    {
+      "id": 11,
+      "title": "Ch11",
+      "path": "ch11.md"
+    },
+    {
+      "id": 12,
+      "title": "Ch12",
+      "path": "ch12.md"
+    },
+    {
+      "id": 13,
+      "title": "Ch13",
+      "path": "ch13.md"
     }
   ]
 }

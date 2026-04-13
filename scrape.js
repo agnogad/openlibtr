@@ -34,12 +34,7 @@ async function start() {
             choices: folders
         }]);
 
-        const { novelUrl } = await inquirer.prompt([{
-            type: 'input',
-            name: 'novelUrl',
-            message: 'Romanın ANA sayfa URL\'sini girin:',
-            default: `https://novelbin.com/b/${selectedNovel}`
-        }]);
+        const novelUrl = `https://novelbin.com/ajax/chapter-archive?novelId=${selectedNovel}`; 
 
         console.log("🔍 Sayfa taranıyor, tüm bölümler ayıklanıyor...");
         const allChapterLinks = await getAllChapterLinks(novelUrl);
@@ -100,7 +95,7 @@ async function getAllChapterLinks(novelUrl) {
         const linksSet = new Set(); // Tekrar eden linkleri engellemek için
 
         // 1. Yol: Senin verdiğin yapı (En garantisi)
-        $('li a').each((i, el) => {
+        $('a').each((i, el) => {
             const href = $(el).attr('href');
             if (href && href.startsWith('http' && href.includes('/chapter-'))) linksSet.add(href);
         });
@@ -150,18 +145,34 @@ async function processChapter(novelName, url, chapterNum) {
 
         if (!content || content.length < 100) {
             console.log("❌ İçerik çok kısa veya çekilemedi. HTML yapısı farklı olabilir.");
-            console.log(curlCmd); 
             return;
         }
 
         console.log(`🤖 Gemini (${chapterNum}) çevirisine başladı...`);
-        const prompt = `Aşağıdaki İngilizce roman bölümünü Türkçe'ye çevir. Akıcı, edebi ve profesyonel bir dil kullan. (Gerekirse paragraflara ayır) Sadece çeviri metnini döndür.\n\nİçerik:\n${content}`;
+        const prompt = `Aşağıdaki İngilizce roman metnini Türkçe'ye çevir. 
+        
+KURALLAR:
+1. Akıcı, edebi ve profesyonel bir dil kullan.
+2. Light novel olduğunu göze alarak ona uygun paragraflar kullan. Her paragraf arasında mutlaka bir satır boşluk bırak.
+3. Sadece çeviri metnini döndür, başına veya sonuna açıklama ekleme.
 
-        const result = await model.generateContent(prompt);
-        const translatedText = result.response.text();
+İÇERİK:
+${content}`;
 
-        const finalData = `${translatedText}`;
-        await fs.writeFile(filePath, finalData, 'utf-8');
+        // Model ayarlarını bu şekilde dene
+const result = await model.generateContent({
+    contents: [{ role: 'user', parts: [{ text: prompt }] }],
+    generationConfig: {
+        temperature: 0.9, // Edebi metinlerde yaratıcılık ve yapı için daha iyidir
+    }
+});
+
+let translatedText = result.response.text();
+
+// Yazmadan önce metnin başına ve sonuna trim uygulayıp, 
+// satır sonlarının korunduğundan emin olalım
+await fs.writeFile(filePath, translatedText.trim(), 'utf-8');
+
         console.log(`💾 Başarıyla kaydedildi: ch${chapterNum}.md`);
 
         // Anti-ban beklemesi
