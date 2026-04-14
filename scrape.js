@@ -3,7 +3,7 @@ const path = require('path');
 const { execSync } = require('child_process');
 const cheerio = require('cheerio');
 const inquirer = require('inquirer');
-const OpenAI = require('openai'); // Google AI yerine OpenAI eklendi
+const OpenAI = require('openai');
 require('dotenv').config();
 
 // --- AYARLAR ---
@@ -11,11 +11,36 @@ const BOOKS_DIR = path.join(__dirname, 'books');
 
 // OpenAI Yapılandırması
 const openai = new OpenAI({
-    apiKey: "[STATUS_CODES:429][ACCESS_KEY:access]", // Env'den 'comapi' anahtarını alır
-    baseURL: "http://localhost:8990/minipi" // Belirttiğin Base URL
+    apiKey: "[STATUS_CODES:429][ACCESS_KEY:access]", 
+    baseURL: "http://localhost:8990/minipi" 
 });
 
 const USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36';
+
+// --- TERMUX BİLDİRİM FONKSİYONU ---
+function sendTermuxNotification(current, total, status) {
+    try {
+        const id = "indirme_durumu";
+        
+        if (status === "success") {
+            const cmd = `termux-notification -i "${id}" -t "İşlem Başarılı" -c "Tüm dosyalar (${total}/${total}) cihazına kaydedildi." --icon "check_circle" --led-color "00FF00"`;
+            execSync(cmd);
+            return;
+        }
+
+        // 10 birimlik progress bar hesaplama
+        const ratio = current / total;
+        const barCount = Math.round(ratio * 10);
+        const bar = '#'.repeat(barCount);
+        const empty = '.'.repeat(10 - barCount);
+        
+        const cmd = `termux-notification -i "${id}" -t "Bölümler Çevriliyor" -c "[${bar}${empty}] ${current}/${total} tamamlandı" --icon "sync" --priority high`;
+        execSync(cmd);
+    } catch (error) {
+        // Eğer cihazda Termux:API uygulaması yoksa scriptin çökmesini engeller
+        console.error("⚠️ Termux bildirimi gönderilemedi (Termux:API kurulu/aktif olmayabilir).");
+    }
+}
 
 async function start() {
     try {
@@ -96,6 +121,9 @@ async function start() {
             default: 1
         }]);
 
+        // İlk bildirimi gönder (0/count durumu)
+        if (count > 0) sendTermuxNotification(0, count, "progress");
+
         for (let i = 1; i <= count; i++) {
             const targetIdx = lastChapterIdx + i;
             const targetLink = allChapterLinks[targetIdx - 1];
@@ -106,6 +134,15 @@ async function start() {
             }
 
             await processChapter(selectedNovel, targetLink, targetIdx);
+            
+            // Her bölüm bittiğinde bildirimi güncelle
+            sendTermuxNotification(i, count, "progress");
+        }
+
+        // Tüm işlemler bittiğinde başarı bildirimi gönder
+        if (count > 0) {
+            sendTermuxNotification(count, count, "success");
+            console.log("🎉 Tüm çeviri işlemleri tamamlandı!");
         }
 
     } catch (err) {
@@ -167,9 +204,8 @@ KURALLAR:
 İÇERİK:
 ${content}`;
 
-        // OpenAI API Çağrısı
         const response = await openai.chat.completions.create({
-            model: "gemini-2.5-flash", // Kullandığınız servisin desteklediği model adını buraya yazın (örn: gpt-3.5-turbo)
+            model: "gemini-2.5-flash", 
             messages: [
                 { role: "system", content: "Sen profesyonel bir kitap çevirmenisin." },
                 { role: "user", content: prompt }
