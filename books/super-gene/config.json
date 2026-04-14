@@ -1,6 +1,6 @@
 {
   "slug": "super-gene",
-  "total_chapters": 14,
+  "total_chapters": 28,
   "chapters": [
     {
       "id": 1,
@@ -71,6 +71,76 @@
       "id": 14,
       "title": "Ch15",
       "path": "ch15.md"
+    },
+    {
+      "id": 15,
+      "title": "Ch16",
+      "path": "ch16.md"
+    },
+    {
+      "id": 16,
+      "title": "Ch18",
+      "path": "ch18.md"
+    },
+    {
+      "id": 17,
+      "title": "Ch19",
+      "path": "ch19.md"
+    },
+    {
+      "id": 18,
+      "title": "Ch23",
+      "path": "ch23.md"
+    },
+    {
+      "id": 19,
+      "title": "Ch25",
+      "path": "ch25.md"
+    },
+    {
+      "id": 20,
+      "title": "Ch26",
+      "path": "ch26.md"
+    },
+    {
+      "id": 21,
+      "title": "Ch27",
+      "path": "ch27.md"
+    },
+    {
+      "id": 22,
+      "title": "Ch28",
+      "path": "ch28.md"
+    },
+    {
+      "id": 23,
+      "title": "Ch29",
+      "path": "ch29.md"
+    },
+    {
+      "id": 24,
+      "title": "Ch30",
+      "path": "ch30.md"
+    },
+    {
+      "id": 25,
+      "title": "Ch32",
+      "path": "ch32.md"
+    },
+    {
+      "id": 26,
+      "title": "Ch33",
+      "path": "ch33.md"
+    },
+    {
+      "id": 27,
+      "title": "Ch34",
+      "path": "ch34.md"
+    },
+    {
+      "id": 28,
+      "title": "Ch35",
+      "path": "ch35.md"
     }
   ]
 }

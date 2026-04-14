@@ -1,6 +1,6 @@
 {
   "slug": "i-have-a-cultivation-world",
-  "total_chapters": 29,
+  "total_chapters": 40,
   "chapters": [
     {
       "id": 1,
@@ -146,6 +146,61 @@
       "id": 29,
       "title": "Ch29",
       "path": "ch29.md"
+    },
+    {
+      "id": 30,
+      "title": "Ch30",
+      "path": "ch30.md"
+    },
+    {
+      "id": 31,
+      "title": "Ch31",
+      "path": "ch31.md"
+    },
+    {
+      "id": 32,
+      "title": "Ch33",
+      "path": "ch33.md"
+    },
+    {
+      "id": 33,
+      "title": "Ch34",
+      "path": "ch34.md"
+    },
+    {
+      "id": 34,
+      "title": "Ch35",
+      "path": "ch35.md"
+    },
+    {
+      "id": 35,
+      "title": "Ch37",
+      "path": "ch37.md"
+    },
+    {
+      "id": 36,
+      "title": "Ch39",
+      "path": "ch39.md"
+    },
+    {
+      "id": 37,
+      "title": "Ch44",
+      "path": "ch44.md"
+    },
+    {
+      "id": 38,
+      "title": "Ch47",
+      "path": "ch47.md"
+    },
+    {
+      "id": 39,
+      "title": "Ch51",
+      "path": "ch51.md"
+    },
+    {
+      "id": 40,
+      "title": "Ch53",
+      "path": "ch53.md"
     }
   ]
 }

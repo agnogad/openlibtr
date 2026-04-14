@@ -1,6 +1,6 @@
 {
   "slug": "chaotic-sword-god",
-  "total_chapters": 7,
+  "total_chapters": 10,
   "chapters": [
     {
       "id": 1,
@@ -36,6 +36,21 @@
       "id": 7,
       "title": "Ch7",
       "path": "ch7.md"
+    },
+    {
+      "id": 8,
+      "title": "Ch8",
+      "path": "ch8.md"
+    },
+    {
+      "id": 9,
+      "title": "Ch9",
+      "path": "ch9.md"
+    },
+    {
+      "id": 10,
+      "title": "Ch10",
+      "path": "ch10.md"
     }
   ]
 }
