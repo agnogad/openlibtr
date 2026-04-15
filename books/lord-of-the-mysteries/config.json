@@ -1,6 +1,6 @@
 {
   "slug": "lord-of-the-mysteries",
-  "total_chapters": 20,
+  "total_chapters": 60,
   "chapters": [
     {
       "id": 1,
@@ -101,6 +101,206 @@
       "id": 20,
       "title": "Ch20",
       "path": "ch20.md"
+    },
+    {
+      "id": 21,
+      "title": "Ch21",
+      "path": "ch21.md"
+    },
+    {
+      "id": 22,
+      "title": "Ch22",
+      "path": "ch22.md"
+    },
+    {
+      "id": 23,
+      "title": "Ch23",
+      "path": "ch23.md"
+    },
+    {
+      "id": 24,
+      "title": "Ch24",
+      "path": "ch24.md"
+    },
+    {
+      "id": 25,
+      "title": "Ch25",
+      "path": "ch25.md"
+    },
+    {
+      "id": 26,
+      "title": "Ch26",
+      "path": "ch26.md"
+    },
+    {
+      "id": 27,
+      "title": "Ch27",
+      "path": "ch27.md"
+    },
+    {
+      "id": 28,
+      "title": "Ch28",
+      "path": "ch28.md"
+    },
+    {
+      "id": 29,
+      "title": "Ch29",
+      "path": "ch29.md"
+    },
+    {
+      "id": 30,
+      "title": "Ch30",
+      "path": "ch30.md"
+    },
+    {
+      "id": 31,
+      "title": "Ch31",
+      "path": "ch31.md"
+    },
+    {
+      "id": 32,
+      "title": "Ch32",
+      "path": "ch32.md"
+    },
+    {
+      "id": 33,
+      "title": "Ch33",
+      "path": "ch33.md"
+    },
+    {
+      "id": 34,
+      "title": "Ch34",
+      "path": "ch34.md"
+    },
+    {
+      "id": 35,
+      "title": "Ch35",
+      "path": "ch35.md"
+    },
+    {
+      "id": 36,
+      "title": "Ch36",
+      "path": "ch36.md"
+    },
+    {
+      "id": 37,
+      "title": "Ch37",
+      "path": "ch37.md"
+    },
+    {
+      "id": 38,
+      "title": "Ch38",
+      "path": "ch38.md"
+    },
+    {
+      "id": 39,
+      "title": "Ch39",
+      "path": "ch39.md"
+    },
+    {
+      "id": 40,
+      "title": "Ch40",
+      "path": "ch40.md"
+    },
+    {
+      "id": 41,
+      "title": "Ch41",
+      "path": "ch41.md"
+    },
+    {
+      "id": 42,
+      "title": "Ch42",
+      "path": "ch42.md"
+    },
+    {
+      "id": 43,
+      "title": "Ch43",
+      "path": "ch43.md"
+    },
+    {
+      "id": 44,
+      "title": "Ch44",
+      "path": "ch44.md"
+    },
+    {
+      "id": 45,
+      "title": "Ch45",
+      "path": "ch45.md"
+    },
+    {
+      "id": 46,
+      "title": "Ch46",
+      "path": "ch46.md"
+    },
+    {
+      "id": 47,
+      "title": "Ch47",
+      "path": "ch47.md"
+    },
+    {
+      "id": 48,
+      "title": "Ch48",
+      "path": "ch48.md"
+    },
+    {
+      "id": 49,
+      "title": "Ch49",
+      "path": "ch49.md"
+    },
+    {
+      "id": 50,
+      "title": "Ch50",
+      "path": "ch50.md"
+    },
+    {
+      "id": 51,
+      "title": "Ch51",
+      "path": "ch51.md"
+    },
+    {
+      "id": 52,
+      "title": "Ch52",
+      "path": "ch52.md"
+    },
+    {
+      "id": 53,
+      "title": "Ch53",
+      "path": "ch53.md"
+    },
+    {
+      "id": 54,
+      "title": "Ch54",
+      "path": "ch54.md"
+    },
+    {
+      "id": 55,
+      "title": "Ch55",
+      "path": "ch55.md"
+    },
+    {
+      "id": 56,
+      "title": "Ch56",
+      "path": "ch56.md"
+    },
+    {
+      "id": 57,
+      "title": "Ch57",
+      "path": "ch57.md"
+    },
+    {
+      "id": 58,
+      "title": "Ch58",
+      "path": "ch58.md"
+    },
+    {
+      "id": 59,
+      "title": "Ch59",
+      "path": "ch59.md"
+    },
+    {
+      "id": 60,
+      "title": "Ch60",
+      "path": "ch60.md"
     }
   ]
 }
