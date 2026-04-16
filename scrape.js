@@ -1,18 +1,18 @@
+const aisdk = require("./aisdk.js");
 const fs = require('fs-extra');
 const path = require('path');
 const { execSync } = require('child_process');
 const cheerio = require('cheerio');
 const inquirer = require('inquirer');
 const OpenAI = require('openai');
+
 require('dotenv').config();
 
 // --- AYARLAR ---
 const BOOKS_DIR = path.join(__dirname, 'books');
 
-// OpenAI Yapılandırması
-const openai = new OpenAI({
-    apiKey: "demokey", 
-    baseURL: "http://localhost:3000/v1" 
+const client = new aisdk.PiAiClient({
+  accounts: [aisdk.AccountPresets.geminiCli()],
 });
 
 const USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36';
@@ -222,16 +222,9 @@ KURALLAR:
 İÇERİK:
 ${content}`;
 
-        const response = await openai.chat.completions.create({
-            model: "gemini-2.5-flash", 
-            messages: [
-                { role: "system", content: "Sen profesyonel bir kitap çevirmenisin." },
-                { role: "user", content: prompt }
-            ],
-            temperature: 0.8,
-        });
+        const response = await client.complete(prompt);
 
-        let translatedText = response.choices[0].message.content;
+        let translatedText = response.content;
         
         console.log(translatedText);
         if(translatedText.length < 100){
