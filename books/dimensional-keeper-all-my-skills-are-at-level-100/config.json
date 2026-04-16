@@ -1,6 +1,6 @@
 {
   "slug": "dimensional-keeper-all-my-skills-are-at-level-100",
-  "total_chapters": 20,
+  "total_chapters": 22,
   "chapters": [
     {
       "id": 1,
@@ -101,6 +101,16 @@
       "id": 20,
       "title": "Ch20",
       "path": "ch20.md"
+    },
+    {
+      "id": 21,
+      "title": "Ch21",
+      "path": "ch21.md"
+    },
+    {
+      "id": 22,
+      "title": "Ch22",
+      "path": "ch22.md"
     }
   ]
 }

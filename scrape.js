@@ -12,7 +12,7 @@ const BOOKS_DIR = path.join(__dirname, 'books');
 // OpenAI Yapılandırması
 const openai = new OpenAI({
     apiKey: "demokey", 
-    baseURL: "http://localhost:4000/v1" 
+    baseURL: "http://localhost:3000/v1" 
 });
 
 const USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36';
@@ -223,7 +223,7 @@ KURALLAR:
 ${content}`;
 
         const response = await openai.chat.completions.create({
-            model: "gemini", 
+            model: "gemini-2.5-flash", 
             messages: [
                 { role: "system", content: "Sen profesyonel bir kitap çevirmenisin." },
                 { role: "user", content: prompt }
