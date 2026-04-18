@@ -1,66 +1,97 @@
 const aisdk = require("./aisdk.js");
-const fs = require('fs-extra');
-const path = require('path');
+const fs    = require('fs-extra');
+const path  = require('path');
 const { execSync } = require('child_process');
-const inquirer = require('inquirer');
+const inquirer     = require('inquirer');
 
 require('dotenv').config();
 
-// Royal Road kütüphanesini dinamik import ile yüklüyoruz (ESM)
-let RoyalRoad;
-async function loadRoyalRoad() {
-    if (!RoyalRoad) {
+// ─── ESM kütüphanelerini CJS içine yükle ──────────────────────────────────────
+
+let _rrInstance, _nuInstance, _wnInstance;
+
+async function getRoyalRoad() {
+    if (!_rrInstance) {
         const mod = await import('./royalroad.js');
-        RoyalRoad = mod.default;
+        _rrInstance = new mod.default({ enableVol: false });
     }
-    return new RoyalRoad({ enableVol: false });
+    return _rrInstance;
 }
 
-// --- AYARLAR ---
+async function getWebnovel() {
+    if (!_wnInstance) {
+        const mod = await import('./webnovel.js');
+        _wnInstance = new mod.default({ hideLocked: false });
+    }
+    return _wnInstance;
+}
+
+async function getNovelUpdates() {
+    if (!_nuInstance) {
+        const mod = await import('./novelupdates.js');
+        _nuInstance = new mod.default();
+    }
+    return _nuInstance;
+}
+
+// ─── AYARLAR ──────────────────────────────────────────────────────────────────
+
 const BOOKS_DIR = path.join(__dirname, 'books');
 
 const client = new aisdk.PiAiClient({
     accounts: [aisdk.AccountPresets.geminiCli()],
 });
 
-// --- TERMUX BİLDİRİM FONKSİYONU ---
+// ─── TERMUX BİLDİRİM ─────────────────────────────────────────────────────────
+
 function sendTermuxNotification(current, total, status) {
     try {
         const id = "indirme_durumu";
-
         if (status === "success") {
-            const cmd = `termux-notification -i "${id}" -t "İşlem Başarılı" -c "Tüm dosyalar (${total}/${total}) cihazına kaydedildi." --icon "check_circle" --led-color "00FF00"`;
-            execSync(cmd);
+            execSync(`termux-notification -i "${id}" -t "İşlem Başarılı" -c "Tüm dosyalar (${total}/${total}) cihazına kaydedildi." --icon "check_circle" --led-color "00FF00"`);
             return;
         }
-
-        const ratio = current / total;
-        const barCount = Math.round(ratio * 10);
-        const bar = '#'.repeat(barCount);
-        const empty = '.'.repeat(10 - barCount);
-
-        const cmd = `termux-notification -i "${id}" -t "Bölümler Çevriliyor" -c "[${bar}${empty}] ${current}/${total} tamamlandı" --icon "sync" --priority high`;
-        execSync(cmd);
-    } catch (error) {
-        console.error("⚠️ Termux bildirimi gönderilemedi (Termux:API kurulu/aktif olmayabilir).");
+        const bar   = '#'.repeat(Math.round((current / total) * 10));
+        const empty = '.'.repeat(10 - bar.length);
+        execSync(`termux-notification -i "${id}" -t "Bölümler Çevriliyor" -c "[${bar}${empty}] ${current}/${total} tamamlandı" --icon "sync" --priority high`);
+    } catch {
+        console.error("⚠️ Termux bildirimi gönderilemedi.");
     }
 }
 
+// ─── ANA AKIŞ ─────────────────────────────────────────────────────────────────
+
 async function start() {
     try {
-        console.log("🚀 Royal Road Scraper & AI Translator");
-
-        const rr = await loadRoyalRoad();
+        console.log("🚀 Novel Scraper & AI Translator");
 
         if (!await fs.pathExists(BOOKS_DIR)) await fs.ensureDir(BOOKS_DIR);
 
-        // --- Novel seçimi: klasör yoksa arama yap ---
+        // ── Kaynak seç ────────────────────────────────────────────────────────
+        const { source } = await inquirer.prompt([{
+            type: 'list',
+            name: 'source',
+            message: 'Kaynak seçin:',
+            choices: [
+                { name: '👑 Royal Road  (İngilizce orijinal web novellar)', value: 'royalroad'    },
+                { name: '📚 Novel Updates (Çeviri novellar – Japonca/Kore/Çince)', value: 'novelupdates' },
+                { name: '📖 Webnovel (webnovel.com – Çince/Orijinal)', value: 'webnovel'    },
+            ],
+        }]);
+
+        const plugin = source === 'royalroad'
+            ? await getRoyalRoad()
+            : source === 'webnovel'
+            ? await getWebnovel()
+            : await getNovelUpdates();
+
+        // ── Var olan kitapları veya yeni arama ────────────────────────────────
         const folders = (await fs.readdir(BOOKS_DIR, { withFileTypes: true }))
             .filter(d => d.isDirectory())
             .map(d => d.name);
 
-        let selectedNovelPath; // "fiction/12345/novel-slug"
-        let selectedNovelSlug; // klasör adı olarak kullanılacak kısa isim
+        let selectedNovelPath;   // plugin'in kullandığı path
+        let selectedNovelSlug;   // klasör adı
 
         if (folders.length > 0) {
             const { action } = await inquirer.prompt([{
@@ -68,8 +99,8 @@ async function start() {
                 name: 'action',
                 message: 'Ne yapmak istersiniz?',
                 choices: [
-                    { name: '📚 Var olan kitap', value: 'existing' },
-                    { name: '🔍 Yeni novel ara', value: 'search' },
+                    { name: '📂 Var olan kitabı devam ettir', value: 'existing' },
+                    { name: '🔍 Yeni novel ara',               value: 'search'   },
                 ],
             }]);
 
@@ -80,23 +111,23 @@ async function start() {
                     message: 'Kitap seçin:',
                     choices: folders,
                 }]);
-
-                // Klasörde kaydedilen novel path'ini oku
                 const metaPath = path.join(BOOKS_DIR, chosen, 'meta.json');
-                if (await fs.pathExists(metaPath)) {
-                    const meta = await fs.readJson(metaPath);
-                    selectedNovelPath = meta.path;
-                    selectedNovelSlug = chosen;
-                } else {
+                if (!await fs.pathExists(metaPath)) {
                     console.log("❌ meta.json bulunamadı, lütfen novel'i yeniden aratın.");
                     return;
                 }
+                const meta = await fs.readJson(metaPath);
+                if (meta.source && meta.source !== source) {
+                    console.log(`⚠️ Bu kitap "${meta.source}" kaynağından. Seçilen kaynak: "${source}".`);
+                }
+                selectedNovelPath = meta.path;
+                selectedNovelSlug = chosen;
             } else {
-                ({ selectedNovelPath, selectedNovelSlug } = await searchAndSelectNovel(rr));
+                ({ selectedNovelPath, selectedNovelSlug } = await searchAndSelect(plugin, source));
             }
         } else {
             console.log("📂 'books/' klasörü boş, novel aranıyor...");
-            ({ selectedNovelPath, selectedNovelSlug } = await searchAndSelectNovel(rr));
+            ({ selectedNovelPath, selectedNovelSlug } = await searchAndSelect(plugin, source));
         }
 
         if (!selectedNovelPath) return;
@@ -104,12 +135,12 @@ async function start() {
         const novelDir = path.join(BOOKS_DIR, selectedNovelSlug);
         await fs.ensureDir(novelDir);
 
-        // --- Novel metadata + bölüm listesini çek ---
+        // ── Novel metadata + bölüm listesi ───────────────────────────────────
         console.log("🔍 Novel bilgileri alınıyor...");
-        const novel = await rr.parseNovel(selectedNovelPath);
+        const novel = await plugin.parseNovel(selectedNovelPath);
 
-        // meta.json kaydet
         await fs.writeJson(path.join(novelDir, 'meta.json'), {
+            source,
             path:    novel.path,
             name:    novel.name,
             author:  novel.author,
@@ -118,10 +149,10 @@ async function start() {
             summary: novel.summary,
         }, { spaces: 2 });
 
-        // --- Kapak resmi ---
+        // ── Kapak resmi ───────────────────────────────────────────────────────
         const coverPath = path.join(novelDir, 'cover.jpg');
         if (!await fs.pathExists(coverPath) && novel.cover) {
-            console.log(`📸 Kapak indiriliyor: ${novel.cover}`);
+            console.log(`📸 Kapak indiriliyor...`);
             try {
                 execSync(`curl -s -L "${novel.cover}" -o "${coverPath}"`);
                 console.log("✅ Kapak kaydedildi.");
@@ -137,12 +168,12 @@ async function start() {
         }
         console.log(`✅ Toplam ${allChapters.length} bölüm bulundu.`);
 
-        // --- Eksik bölümleri tespit et ---
+        // ── Eksik bölümleri tespit et ─────────────────────────────────────────
         const files = await fs.readdir(novelDir);
         const existingChapters = new Set();
-        files.forEach(file => {
-            const match = file.match(/ch(\d+)\.md/);
-            if (match) existingChapters.add(parseInt(match[1]));
+        files.forEach(f => {
+            const m = f.match(/ch(\d+)\.md/);
+            if (m) existingChapters.add(parseInt(m[1]));
         });
 
         const { count } = await inquirer.prompt([{
@@ -167,13 +198,11 @@ async function start() {
         sendTermuxNotification(0, targetChapters.length, "progress");
 
         for (let i = 0; i < targetChapters.length; i++) {
-            const chNum = targetChapters[i];
+            const chNum   = targetChapters[i];
             const chapter = allChapters[chNum - 1];
-            if (!chapter) {
-                console.log(`⚠️ Bölüm ${chNum} listede yok.`);
-                break;
-            }
-            await processChapter(rr, novelDir, chapter, chNum);
+            if (!chapter) { console.log(`⚠️ Bölüm ${chNum} listede yok.`); break; }
+
+            await processChapter(plugin, novelDir, chapter, chNum);
             sendTermuxNotification(i + 1, targetChapters.length, "progress");
         }
 
@@ -185,16 +214,17 @@ async function start() {
     }
 }
 
-// --- Novel arama yardımcısı ---
-async function searchAndSelectNovel(rr) {
+// ─── Novel arama + seçim ──────────────────────────────────────────────────────
+
+async function searchAndSelect(plugin, source) {
     const { searchTerm } = await inquirer.prompt([{
         type: 'input',
         name: 'searchTerm',
-        message: 'Royal Road\'da novel ara:',
+        message: `${source === 'royalroad' ? 'Royal Road' : source === 'webnovel' ? 'Webnovel' : 'Novel Updates'}'da novel ara:`,
     }]);
 
     console.log("🔍 Aranıyor...");
-    const results = await rr.searchNovels(searchTerm, 1);
+    const results = await plugin.searchNovels(searchTerm, 1);
 
     if (results.length === 0) {
         console.log("❌ Sonuç bulunamadı.");
@@ -208,38 +238,49 @@ async function searchAndSelectNovel(rr) {
         choices: results.map(n => ({ name: n.name, value: n })),
     }]);
 
-    // Klasör adı: path'ten slug üret  e.g. "fiction/12345/my-novel" → "my-novel"
-    const slug = chosen.path.split('/').pop();
+    const slug = chosen.path
+        .replace(/\/$/, '')
+        .split('/')
+        .filter(Boolean)
+        .pop()
+        .replace(/[^a-zA-Z0-9-_]/g, '-')
+        .toLowerCase();
+
     return { selectedNovelPath: chosen.path, selectedNovelSlug: slug };
 }
 
-// --- Bölüm işleme ---
-async function processChapter(rr, novelDir, chapter, chapterNum) {
+// ─── Bölüm işleme ────────────────────────────────────────────────────────────
+
+async function processChapter(plugin, novelDir, chapter, chapterNum) {
     const filePath = path.join(novelDir, `ch${chapterNum}.md`);
     console.log(`\n--- [Bölüm ${chapterNum}: ${chapter.name}] ---`);
 
     try {
-        // Royal Road kütüphanemizle içeriği çek
-        const html = await rr.parseChapter(chapter.path);
+        const html = await plugin.parseChapter(chapter.path);
 
-        // HTML taglerini temizle, düz metin al
+        // HTML → düz metin (paragraf yapısını koru)
         const content = html
-            .replace(/<[^>]+>/g, ' ')
+            .replace(/<br\s*\/?>/gi, '\n')
+            .replace(/<\/p>/gi, '\n\n')
+            .replace(/<\/h[1-6]>/gi, '\n\n')
+            .replace(/<hr\s*\/?>/gi, '\n---\n')
+            .replace(/<[^>]+>/g, '')
             .replace(/&nbsp;/g, ' ')
             .replace(/&amp;/g, '&')
             .replace(/&lt;/g, '<')
             .replace(/&gt;/g, '>')
             .replace(/&quot;/g, '"')
             .replace(/&#39;/g, "'")
-            .replace(/\s{3,}/g, '\n\n')
+            .replace(/\n{3,}/g, '\n\n')
             .trim();
 
         if (!content || content.length < 100) {
             console.log("❌ İçerik çekilemedi veya çok kısa.");
             return;
         }
-
-        console.log(`🤖 AI çevirisi başlıyor (${chapterNum})...`);
+        let translatedText = "";
+        if(!content.includes("ğ")){
+        console.log(`🤖 AI çevirisi başlıyor (Bölüm ${chapterNum})...`);
 
         const prompt = `Aşağıdaki İngilizce roman metnini Türkçe'ye çevir.
 
@@ -252,17 +293,21 @@ KURALLAR:
 ${content}`;
 
         const response = await client.complete(prompt);
-        const translatedText = response.content;
+        translatedText = response.content;
 
         if (!translatedText || translatedText.length < 100) {
-            console.error(`❌ Bölüm ${chapterNum}: API'den gelen çeviri çok kısa/boş!`);
-        } else {
-            const markdown = `# ${chapter.name}\n\n${translatedText.trim()}`;
-            await fs.writeFile(filePath, markdown, 'utf-8');
-            console.log(`💾 Kaydedildi: ch${chapterNum}.md`);
+            console.error(`❌ Bölüm ${chapterNum}: API çevirisi çok kısa/boş!`);
+            return;
         }
+        }else{
+        	translatedText=content;
+       } 
 
-        // Throttle: 2.5–5.5 saniye bekle
+        const markdown = `${translatedText.trim()}`;
+        await fs.writeFile(filePath, markdown, 'utf-8');
+        console.log(`💾 Kaydedildi: ch${chapterNum}.md`);
+
+        // Throttle: 2.5 – 5.5 sn
         const delay = Math.floor(Math.random() * 3000) + 2500;
         await new Promise(res => setTimeout(res, delay));
 
