@@ -10,7 +10,6 @@ function syncLibrary() {
         return;
     }
 
-    // 1. Mevcut kütüphaneyi oku (Eğer dosya yoksa boş dizi başlat)
     let oldLibrary = [];
     if (fs.existsSync(LIB_INDEX_PATH)) {
         try {
@@ -44,7 +43,22 @@ function syncLibrary() {
                 };
             });
 
-            // Config.json güncelleme (İçerik değişmese de yazılabilir, maliyeti düşüktür)
+            // --- BAŞLIK BELİRLEME MANTIĞI (Yeni Kısım) ---
+            const metaPath = path.join(folderPath, 'meta.json');
+            let displayTitle = folder.replace(/-/g, ' ').toUpperCase(); // Varsayılan yöntem
+
+            if (fs.existsSync(metaPath)) {
+                try {
+                    const metaData = JSON.parse(fs.readFileSync(metaPath, 'utf-8'));
+                    if (metaData.name) {
+                        displayTitle = metaData.name; // meta.json varsa oradan al
+                    }
+                } catch (e) {
+                    console.error(`⚠️ ${folder} içindeki meta.json okunamadı, klasör ismi kullanılıyor.`);
+                }
+            }
+            // --------------------------------------------
+
             const configPath = path.join(folderPath, 'config.json');
             fs.writeFileSync(configPath, JSON.stringify({
                 slug: folder,
@@ -52,20 +66,18 @@ function syncLibrary() {
                 chapters: chapters
             }, null, 2));
 
-            // 2. Değişiklik kontrolü
             const oldBookData = oldLibrary.find(b => b.slug === folder);
             let lastUpdated = oldBookData ? oldBookData.lastUpdated : new Date().toISOString();
 
-            // Eğer bölüm sayısı değişmişse tarihi güncelle
             if (oldBookData && oldBookData.chapterCount !== chapters.length) {
-                console.log(`✨ ${folder} güncellendi (Yeni bölümler eklendi).`);
+                console.log(`✨ ${folder} güncellendi.`);
                 lastUpdated = new Date().toISOString();
             } else if (!oldBookData) {
                 console.log(`🆕 ${folder} kütüphaneye yeni eklendi.`);
             }
 
             libraryIndex.push({
-                title: folder.replace(/-/g, ' ').toUpperCase(),
+                title: displayTitle, // Belirlenen başlığı kullan
                 slug: folder,
                 chapterCount: chapters.length,
                 lastUpdated: lastUpdated
