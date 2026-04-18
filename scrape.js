@@ -88,6 +88,7 @@ async function start() {
                 }
             } else {
                 console.log("⚠️ Sayfada kapak resmi bulunamadı.");
+                console.log(curlCmd); 
             }
         }
 
@@ -208,6 +209,7 @@ async function processChapter(novelName, url, chapterNum) {
 
         if (!content || content.length < 100) {
             console.log("❌ İçerik çekilemedi.");
+            console. log(curlCmd); 
             return;
         }
 
