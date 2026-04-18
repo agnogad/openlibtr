@@ -1,6 +1,6 @@
 {
   "slug": "i-can-copy-and-evolve-talents",
-  "total_chapters": 149,
+  "total_chapters": 164,
   "chapters": [
     {
       "id": 1,
@@ -689,63 +689,138 @@
     },
     {
       "id": 138,
+      "title": "Ch138",
+      "path": "ch138.md"
+    },
+    {
+      "id": 139,
+      "title": "Ch139",
+      "path": "ch139.md"
+    },
+    {
+      "id": 140,
       "title": "Ch140",
       "path": "ch140.md"
     },
     {
-      "id": 139,
+      "id": 141,
       "title": "Ch141",
       "path": "ch141.md"
     },
     {
-      "id": 140,
+      "id": 142,
       "title": "Ch142",
       "path": "ch142.md"
     },
     {
-      "id": 141,
+      "id": 143,
       "title": "Ch143",
       "path": "ch143.md"
     },
     {
-      "id": 142,
+      "id": 144,
       "title": "Ch144",
       "path": "ch144.md"
     },
     {
-      "id": 143,
+      "id": 145,
       "title": "Ch145",
       "path": "ch145.md"
     },
     {
-      "id": 144,
+      "id": 146,
+      "title": "Ch146",
+      "path": "ch146.md"
+    },
+    {
+      "id": 147,
       "title": "Ch147",
       "path": "ch147.md"
     },
     {
-      "id": 145,
+      "id": 148,
       "title": "Ch148",
       "path": "ch148.md"
     },
     {
-      "id": 146,
+      "id": 149,
+      "title": "Ch149",
+      "path": "ch149.md"
+    },
+    {
+      "id": 150,
+      "title": "Ch150",
+      "path": "ch150.md"
+    },
+    {
+      "id": 151,
+      "title": "Ch151",
+      "path": "ch151.md"
+    },
+    {
+      "id": 152,
+      "title": "Ch152",
+      "path": "ch152.md"
+    },
+    {
+      "id": 153,
       "title": "Ch153",
       "path": "ch153.md"
     },
     {
-      "id": 147,
+      "id": 154,
       "title": "Ch154",
       "path": "ch154.md"
     },
     {
-      "id": 148,
+      "id": 155,
+      "title": "Ch155",
+      "path": "ch155.md"
+    },
+    {
+      "id": 156,
       "title": "Ch156",
       "path": "ch156.md"
     },
     {
-      "id": 149,
+      "id": 157,
+      "title": "Ch157",
+      "path": "ch157.md"
+    },
+    {
+      "id": 158,
+      "title": "Ch158",
+      "path": "ch158.md"
+    },
+    {
+      "id": 159,
       "title": "Ch159",
       "path": "ch159.md"
+    },
+    {
+      "id": 160,
+      "title": "Ch160",
+      "path": "ch160.md"
+    },
+    {
+      "id": 161,
+      "title": "Ch161",
+      "path": "ch161.md"
+    },
+    {
+      "id": 162,
+      "title": "Ch162",
+      "path": "ch162.md"
+    },
+    {
+      "id": 163,
+      "title": "Ch163",
+      "path": "ch163.md"
+    },
+    {
+      "id": 164,
+      "title": "Ch164",
+      "path": "ch164.md"
     }
   ]
 }
