@@ -1,6 +1,6 @@
 {
   "slug": "sss-talent-from-trash-to-tyrant",
-  "total_chapters": 60,
+  "total_chapters": 75,
   "chapters": [
     {
       "id": 1,
@@ -301,6 +301,81 @@
       "id": 60,
       "title": "Ch60",
       "path": "ch60.md"
+    },
+    {
+      "id": 61,
+      "title": "Ch61",
+      "path": "ch61.md"
+    },
+    {
+      "id": 62,
+      "title": "Ch62",
+      "path": "ch62.md"
+    },
+    {
+      "id": 63,
+      "title": "Ch63",
+      "path": "ch63.md"
+    },
+    {
+      "id": 64,
+      "title": "Ch64",
+      "path": "ch64.md"
+    },
+    {
+      "id": 65,
+      "title": "Ch65",
+      "path": "ch65.md"
+    },
+    {
+      "id": 66,
+      "title": "Ch66",
+      "path": "ch66.md"
+    },
+    {
+      "id": 67,
+      "title": "Ch67",
+      "path": "ch67.md"
+    },
+    {
+      "id": 68,
+      "title": "Ch68",
+      "path": "ch68.md"
+    },
+    {
+      "id": 69,
+      "title": "Ch69",
+      "path": "ch69.md"
+    },
+    {
+      "id": 70,
+      "title": "Ch70",
+      "path": "ch70.md"
+    },
+    {
+      "id": 71,
+      "title": "Ch71",
+      "path": "ch71.md"
+    },
+    {
+      "id": 72,
+      "title": "Ch72",
+      "path": "ch72.md"
+    },
+    {
+      "id": 73,
+      "title": "Ch73",
+      "path": "ch73.md"
+    },
+    {
+      "id": 74,
+      "title": "Ch74",
+      "path": "ch74.md"
+    },
+    {
+      "id": 75,
+      "title": "Ch75",
+      "path": "ch75.md"
     }
   ]
 }
