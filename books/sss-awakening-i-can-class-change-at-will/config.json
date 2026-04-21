@@ -1,6 +1,6 @@
 {
   "slug": "sss-awakening-i-can-class-change-at-will",
-  "total_chapters": 70,
+  "total_chapters": 97,
   "chapters": [
     {
       "id": 1,
@@ -351,6 +351,141 @@
       "id": 70,
       "title": "Ch70",
       "path": "ch70.md"
+    },
+    {
+      "id": 71,
+      "title": "Ch71",
+      "path": "ch71.md"
+    },
+    {
+      "id": 72,
+      "title": "Ch72",
+      "path": "ch72.md"
+    },
+    {
+      "id": 73,
+      "title": "Ch73",
+      "path": "ch73.md"
+    },
+    {
+      "id": 74,
+      "title": "Ch74",
+      "path": "ch74.md"
+    },
+    {
+      "id": 75,
+      "title": "Ch75",
+      "path": "ch75.md"
+    },
+    {
+      "id": 76,
+      "title": "Ch76",
+      "path": "ch76.md"
+    },
+    {
+      "id": 77,
+      "title": "Ch77",
+      "path": "ch77.md"
+    },
+    {
+      "id": 78,
+      "title": "Ch78",
+      "path": "ch78.md"
+    },
+    {
+      "id": 79,
+      "title": "Ch80",
+      "path": "ch80.md"
+    },
+    {
+      "id": 80,
+      "title": "Ch81",
+      "path": "ch81.md"
+    },
+    {
+      "id": 81,
+      "title": "Ch82",
+      "path": "ch82.md"
+    },
+    {
+      "id": 82,
+      "title": "Ch83",
+      "path": "ch83.md"
+    },
+    {
+      "id": 83,
+      "title": "Ch84",
+      "path": "ch84.md"
+    },
+    {
+      "id": 84,
+      "title": "Ch85",
+      "path": "ch85.md"
+    },
+    {
+      "id": 85,
+      "title": "Ch86",
+      "path": "ch86.md"
+    },
+    {
+      "id": 86,
+      "title": "Ch87",
+      "path": "ch87.md"
+    },
+    {
+      "id": 87,
+      "title": "Ch88",
+      "path": "ch88.md"
+    },
+    {
+      "id": 88,
+      "title": "Ch89",
+      "path": "ch89.md"
+    },
+    {
+      "id": 89,
+      "title": "Ch90",
+      "path": "ch90.md"
+    },
+    {
+      "id": 90,
+      "title": "Ch91",
+      "path": "ch91.md"
+    },
+    {
+      "id": 91,
+      "title": "Ch92",
+      "path": "ch92.md"
+    },
+    {
+      "id": 92,
+      "title": "Ch93",
+      "path": "ch93.md"
+    },
+    {
+      "id": 93,
+      "title": "Ch94",
+      "path": "ch94.md"
+    },
+    {
+      "id": 94,
+      "title": "Ch95",
+      "path": "ch95.md"
+    },
+    {
+      "id": 95,
+      "title": "Ch98",
+      "path": "ch98.md"
+    },
+    {
+      "id": 96,
+      "title": "Ch99",
+      "path": "ch99.md"
+    },
+    {
+      "id": 97,
+      "title": "Ch100",
+      "path": "ch100.md"
     }
   ]
 }
