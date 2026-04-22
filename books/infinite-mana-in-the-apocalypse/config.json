@@ -1,0 +1,156 @@
+{
+  "slug": "infinite-mana-in-the-apocalypse",
+  "total_chapters": 30,
+  "chapters": [
+    {
+      "id": 1,
+      "title": "Ch1",
+      "path": "ch1.md"
+    },
+    {
+      "id": 2,
+      "title": "Ch2",
+      "path": "ch2.md"
+    },
+    {
+      "id": 3,
+      "title": "Ch3",
+      "path": "ch3.md"
+    },
+    {
+      "id": 4,
+      "title": "Ch4",
+      "path": "ch4.md"
+    },
+    {
+      "id": 5,
+      "title": "Ch5",
+      "path": "ch5.md"
+    },
+    {
+      "id": 6,
+      "title": "Ch6",
+      "path": "ch6.md"
+    },
+    {
+      "id": 7,
+      "title": "Ch7",
+      "path": "ch7.md"
+    },
+    {
+      "id": 8,
+      "title": "Ch8",
+      "path": "ch8.md"
+    },
+    {
+      "id": 9,
+      "title": "Ch9",
+      "path": "ch9.md"
+    },
+    {
+      "id": 10,
+      "title": "Ch10",
+      "path": "ch10.md"
+    },
+    {
+      "id": 11,
+      "title": "Ch11",
+      "path": "ch11.md"
+    },
+    {
+      "id": 12,
+      "title": "Ch12",
+      "path": "ch12.md"
+    },
+    {
+      "id": 13,
+      "title": "Ch13",
+      "path": "ch13.md"
+    },
+    {
+      "id": 14,
+      "title": "Ch14",
+      "path": "ch14.md"
+    },
+    {
+      "id": 15,
+      "title": "Ch15",
+      "path": "ch15.md"
+    },
+    {
+      "id": 16,
+      "title": "Ch16",
+      "path": "ch16.md"
+    },
+    {
+      "id": 17,
+      "title": "Ch17",
+      "path": "ch17.md"
+    },
+    {
+      "id": 18,
+      "title": "Ch18",
+      "path": "ch18.md"
+    },
+    {
+      "id": 19,
+      "title": "Ch19",
+      "path": "ch19.md"
+    },
+    {
+      "id": 20,
+      "title": "Ch20",
+      "path": "ch20.md"
+    },
+    {
+      "id": 21,
+      "title": "Ch21",
+      "path": "ch21.md"
+    },
+    {
+      "id": 22,
+      "title": "Ch22",
+      "path": "ch22.md"
+    },
+    {
+      "id": 23,
+      "title": "Ch23",
+      "path": "ch23.md"
+    },
+    {
+      "id": 24,
+      "title": "Ch24",
+      "path": "ch24.md"
+    },
+    {
+      "id": 25,
+      "title": "Ch25",
+      "path": "ch25.md"
+    },
+    {
+      "id": 26,
+      "title": "Ch26",
+      "path": "ch26.md"
+    },
+    {
+      "id": 27,
+      "title": "Ch27",
+      "path": "ch27.md"
+    },
+    {
+      "id": 28,
+      "title": "Ch28",
+      "path": "ch28.md"
+    },
+    {
+      "id": 29,
+      "title": "Ch29",
+      "path": "ch29.md"
+    },
+    {
+      "id": 30,
+      "title": "Ch30",
+      "path": "ch30.md"
+    }
+  ]
+}
