@@ -1,6 +1,6 @@
 {
   "slug": "stratejistin-y-c3-bckseli-c5-9fi_35629173108619805",
-  "total_chapters": 3,
+  "total_chapters": 8,
   "chapters": [
     {
       "id": 1,
@@ -16,6 +16,31 @@
       "id": 3,
       "title": "Ch3",
       "path": "ch3.md"
+    },
+    {
+      "id": 4,
+      "title": "Ch4",
+      "path": "ch4.md"
+    },
+    {
+      "id": 5,
+      "title": "Ch5",
+      "path": "ch5.md"
+    },
+    {
+      "id": 6,
+      "title": "Ch6",
+      "path": "ch6.md"
+    },
+    {
+      "id": 7,
+      "title": "Ch7",
+      "path": "ch7.md"
+    },
+    {
+      "id": 8,
+      "title": "Ch8",
+      "path": "ch8.md"
     }
   ]
 }
