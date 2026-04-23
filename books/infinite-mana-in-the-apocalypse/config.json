@@ -1,6 +1,6 @@
 {
   "slug": "infinite-mana-in-the-apocalypse",
-  "total_chapters": 153,
+  "total_chapters": 192,
   "chapters": [
     {
       "id": 1,
@@ -764,8 +764,203 @@
     },
     {
       "id": 153,
+      "title": "Ch153",
+      "path": "ch153.md"
+    },
+    {
+      "id": 154,
+      "title": "Ch154",
+      "path": "ch154.md"
+    },
+    {
+      "id": 155,
+      "title": "Ch155",
+      "path": "ch155.md"
+    },
+    {
+      "id": 156,
       "title": "Ch156",
       "path": "ch156.md"
+    },
+    {
+      "id": 157,
+      "title": "Ch158",
+      "path": "ch158.md"
+    },
+    {
+      "id": 158,
+      "title": "Ch159",
+      "path": "ch159.md"
+    },
+    {
+      "id": 159,
+      "title": "Ch160",
+      "path": "ch160.md"
+    },
+    {
+      "id": 160,
+      "title": "Ch162",
+      "path": "ch162.md"
+    },
+    {
+      "id": 161,
+      "title": "Ch163",
+      "path": "ch163.md"
+    },
+    {
+      "id": 162,
+      "title": "Ch165",
+      "path": "ch165.md"
+    },
+    {
+      "id": 163,
+      "title": "Ch166",
+      "path": "ch166.md"
+    },
+    {
+      "id": 164,
+      "title": "Ch167",
+      "path": "ch167.md"
+    },
+    {
+      "id": 165,
+      "title": "Ch168",
+      "path": "ch168.md"
+    },
+    {
+      "id": 166,
+      "title": "Ch174",
+      "path": "ch174.md"
+    },
+    {
+      "id": 167,
+      "title": "Ch175",
+      "path": "ch175.md"
+    },
+    {
+      "id": 168,
+      "title": "Ch176",
+      "path": "ch176.md"
+    },
+    {
+      "id": 169,
+      "title": "Ch177",
+      "path": "ch177.md"
+    },
+    {
+      "id": 170,
+      "title": "Ch178",
+      "path": "ch178.md"
+    },
+    {
+      "id": 171,
+      "title": "Ch179",
+      "path": "ch179.md"
+    },
+    {
+      "id": 172,
+      "title": "Ch181",
+      "path": "ch181.md"
+    },
+    {
+      "id": 173,
+      "title": "Ch182",
+      "path": "ch182.md"
+    },
+    {
+      "id": 174,
+      "title": "Ch183",
+      "path": "ch183.md"
+    },
+    {
+      "id": 175,
+      "title": "Ch184",
+      "path": "ch184.md"
+    },
+    {
+      "id": 176,
+      "title": "Ch185",
+      "path": "ch185.md"
+    },
+    {
+      "id": 177,
+      "title": "Ch186",
+      "path": "ch186.md"
+    },
+    {
+      "id": 178,
+      "title": "Ch187",
+      "path": "ch187.md"
+    },
+    {
+      "id": 179,
+      "title": "Ch188",
+      "path": "ch188.md"
+    },
+    {
+      "id": 180,
+      "title": "Ch189",
+      "path": "ch189.md"
+    },
+    {
+      "id": 181,
+      "title": "Ch190",
+      "path": "ch190.md"
+    },
+    {
+      "id": 182,
+      "title": "Ch191",
+      "path": "ch191.md"
+    },
+    {
+      "id": 183,
+      "title": "Ch193",
+      "path": "ch193.md"
+    },
+    {
+      "id": 184,
+      "title": "Ch194",
+      "path": "ch194.md"
+    },
+    {
+      "id": 185,
+      "title": "Ch195",
+      "path": "ch195.md"
+    },
+    {
+      "id": 186,
+      "title": "Ch196",
+      "path": "ch196.md"
+    },
+    {
+      "id": 187,
+      "title": "Ch197",
+      "path": "ch197.md"
+    },
+    {
+      "id": 188,
+      "title": "Ch198",
+      "path": "ch198.md"
+    },
+    {
+      "id": 189,
+      "title": "Ch199",
+      "path": "ch199.md"
+    },
+    {
+      "id": 190,
+      "title": "Ch200",
+      "path": "ch200.md"
+    },
+    {
+      "id": 191,
+      "title": "Ch201",
+      "path": "ch201.md"
+    },
+    {
+      "id": 192,
+      "title": "Ch203",
+      "path": "ch203.md"
     }
   ]
 }
