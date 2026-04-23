@@ -1,6 +1,6 @@
 {
   "slug": "infinite-mana-in-the-apocalypse",
-  "total_chapters": 100,
+  "total_chapters": 153,
   "chapters": [
     {
       "id": 1,
@@ -501,6 +501,271 @@
       "id": 100,
       "title": "Ch100",
       "path": "ch100.md"
+    },
+    {
+      "id": 101,
+      "title": "Ch101",
+      "path": "ch101.md"
+    },
+    {
+      "id": 102,
+      "title": "Ch102",
+      "path": "ch102.md"
+    },
+    {
+      "id": 103,
+      "title": "Ch103",
+      "path": "ch103.md"
+    },
+    {
+      "id": 104,
+      "title": "Ch104",
+      "path": "ch104.md"
+    },
+    {
+      "id": 105,
+      "title": "Ch105",
+      "path": "ch105.md"
+    },
+    {
+      "id": 106,
+      "title": "Ch106",
+      "path": "ch106.md"
+    },
+    {
+      "id": 107,
+      "title": "Ch107",
+      "path": "ch107.md"
+    },
+    {
+      "id": 108,
+      "title": "Ch108",
+      "path": "ch108.md"
+    },
+    {
+      "id": 109,
+      "title": "Ch109",
+      "path": "ch109.md"
+    },
+    {
+      "id": 110,
+      "title": "Ch110",
+      "path": "ch110.md"
+    },
+    {
+      "id": 111,
+      "title": "Ch111",
+      "path": "ch111.md"
+    },
+    {
+      "id": 112,
+      "title": "Ch112",
+      "path": "ch112.md"
+    },
+    {
+      "id": 113,
+      "title": "Ch113",
+      "path": "ch113.md"
+    },
+    {
+      "id": 114,
+      "title": "Ch114",
+      "path": "ch114.md"
+    },
+    {
+      "id": 115,
+      "title": "Ch115",
+      "path": "ch115.md"
+    },
+    {
+      "id": 116,
+      "title": "Ch116",
+      "path": "ch116.md"
+    },
+    {
+      "id": 117,
+      "title": "Ch117",
+      "path": "ch117.md"
+    },
+    {
+      "id": 118,
+      "title": "Ch118",
+      "path": "ch118.md"
+    },
+    {
+      "id": 119,
+      "title": "Ch119",
+      "path": "ch119.md"
+    },
+    {
+      "id": 120,
+      "title": "Ch120",
+      "path": "ch120.md"
+    },
+    {
+      "id": 121,
+      "title": "Ch121",
+      "path": "ch121.md"
+    },
+    {
+      "id": 122,
+      "title": "Ch122",
+      "path": "ch122.md"
+    },
+    {
+      "id": 123,
+      "title": "Ch123",
+      "path": "ch123.md"
+    },
+    {
+      "id": 124,
+      "title": "Ch124",
+      "path": "ch124.md"
+    },
+    {
+      "id": 125,
+      "title": "Ch125",
+      "path": "ch125.md"
+    },
+    {
+      "id": 126,
+      "title": "Ch126",
+      "path": "ch126.md"
+    },
+    {
+      "id": 127,
+      "title": "Ch127",
+      "path": "ch127.md"
+    },
+    {
+      "id": 128,
+      "title": "Ch128",
+      "path": "ch128.md"
+    },
+    {
+      "id": 129,
+      "title": "Ch129",
+      "path": "ch129.md"
+    },
+    {
+      "id": 130,
+      "title": "Ch130",
+      "path": "ch130.md"
+    },
+    {
+      "id": 131,
+      "title": "Ch131",
+      "path": "ch131.md"
+    },
+    {
+      "id": 132,
+      "title": "Ch132",
+      "path": "ch132.md"
+    },
+    {
+      "id": 133,
+      "title": "Ch133",
+      "path": "ch133.md"
+    },
+    {
+      "id": 134,
+      "title": "Ch134",
+      "path": "ch134.md"
+    },
+    {
+      "id": 135,
+      "title": "Ch135",
+      "path": "ch135.md"
+    },
+    {
+      "id": 136,
+      "title": "Ch136",
+      "path": "ch136.md"
+    },
+    {
+      "id": 137,
+      "title": "Ch137",
+      "path": "ch137.md"
+    },
+    {
+      "id": 138,
+      "title": "Ch138",
+      "path": "ch138.md"
+    },
+    {
+      "id": 139,
+      "title": "Ch139",
+      "path": "ch139.md"
+    },
+    {
+      "id": 140,
+      "title": "Ch140",
+      "path": "ch140.md"
+    },
+    {
+      "id": 141,
+      "title": "Ch141",
+      "path": "ch141.md"
+    },
+    {
+      "id": 142,
+      "title": "Ch142",
+      "path": "ch142.md"
+    },
+    {
+      "id": 143,
+      "title": "Ch143",
+      "path": "ch143.md"
+    },
+    {
+      "id": 144,
+      "title": "Ch144",
+      "path": "ch144.md"
+    },
+    {
+      "id": 145,
+      "title": "Ch145",
+      "path": "ch145.md"
+    },
+    {
+      "id": 146,
+      "title": "Ch146",
+      "path": "ch146.md"
+    },
+    {
+      "id": 147,
+      "title": "Ch147",
+      "path": "ch147.md"
+    },
+    {
+      "id": 148,
+      "title": "Ch148",
+      "path": "ch148.md"
+    },
+    {
+      "id": 149,
+      "title": "Ch149",
+      "path": "ch149.md"
+    },
+    {
+      "id": 150,
+      "title": "Ch150",
+      "path": "ch150.md"
+    },
+    {
+      "id": 151,
+      "title": "Ch151",
+      "path": "ch151.md"
+    },
+    {
+      "id": 152,
+      "title": "Ch152",
+      "path": "ch152.md"
+    },
+    {
+      "id": 153,
+      "title": "Ch156",
+      "path": "ch156.md"
     }
   ]
 }
