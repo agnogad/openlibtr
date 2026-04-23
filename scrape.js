@@ -219,6 +219,7 @@ KURALLAR:
 1. Akıcı, edebi ve profesyonel bir dil kullan.
 2. Light novel olduğunu göze alarak ona uygun paragraflar kullan. Her paragraf arasında mutlaka bir satır boşluk bırak.
 3. Sadece çeviri metnini döndür, başına veya sonuna açıklama ekleme.
+4. özel isim ve metnin konseptine uygun olan (çevrilmemesi gereken) terimleri olduğu gibi bırak, çevirme.
 
 İÇERİK:
 ${content}`;
