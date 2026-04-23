@@ -1,0 +1,56 @@
+{
+  "slug": "no-game-no-life",
+  "total_chapters": 10,
+  "chapters": [
+    {
+      "id": 1,
+      "title": "Ch1",
+      "path": "ch1.md"
+    },
+    {
+      "id": 2,
+      "title": "Ch2",
+      "path": "ch2.md"
+    },
+    {
+      "id": 3,
+      "title": "Ch3",
+      "path": "ch3.md"
+    },
+    {
+      "id": 4,
+      "title": "Ch4",
+      "path": "ch4.md"
+    },
+    {
+      "id": 5,
+      "title": "Ch5",
+      "path": "ch5.md"
+    },
+    {
+      "id": 6,
+      "title": "Ch6",
+      "path": "ch6.md"
+    },
+    {
+      "id": 7,
+      "title": "Ch7",
+      "path": "ch7.md"
+    },
+    {
+      "id": 8,
+      "title": "Ch8",
+      "path": "ch8.md"
+    },
+    {
+      "id": 9,
+      "title": "Ch9",
+      "path": "ch9.md"
+    },
+    {
+      "id": 10,
+      "title": "Ch10",
+      "path": "ch10.md"
+    }
+  ]
+}
