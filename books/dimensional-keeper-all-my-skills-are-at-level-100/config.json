@@ -1,6 +1,6 @@
 {
   "slug": "dimensional-keeper-all-my-skills-are-at-level-100",
-  "total_chapters": 64,
+  "total_chapters": 89,
   "chapters": [
     {
       "id": 1,
@@ -239,88 +239,213 @@
     },
     {
       "id": 48,
+      "title": "Ch48",
+      "path": "ch48.md"
+    },
+    {
+      "id": 49,
       "title": "Ch49",
       "path": "ch49.md"
     },
     {
-      "id": 49,
+      "id": 50,
       "title": "Ch50",
       "path": "ch50.md"
     },
     {
-      "id": 50,
+      "id": 51,
       "title": "Ch51",
       "path": "ch51.md"
     },
     {
-      "id": 51,
+      "id": 52,
       "title": "Ch52",
       "path": "ch52.md"
     },
     {
-      "id": 52,
+      "id": 53,
+      "title": "Ch53",
+      "path": "ch53.md"
+    },
+    {
+      "id": 54,
       "title": "Ch54",
       "path": "ch54.md"
     },
     {
-      "id": 53,
+      "id": 55,
+      "title": "Ch55",
+      "path": "ch55.md"
+    },
+    {
+      "id": 56,
       "title": "Ch56",
       "path": "ch56.md"
     },
     {
-      "id": 54,
+      "id": 57,
       "title": "Ch57",
       "path": "ch57.md"
     },
     {
-      "id": 55,
+      "id": 58,
+      "title": "Ch58",
+      "path": "ch58.md"
+    },
+    {
+      "id": 59,
       "title": "Ch59",
       "path": "ch59.md"
     },
     {
-      "id": 56,
+      "id": 60,
       "title": "Ch60",
       "path": "ch60.md"
     },
     {
-      "id": 57,
+      "id": 61,
       "title": "Ch61",
       "path": "ch61.md"
     },
     {
-      "id": 58,
+      "id": 62,
+      "title": "Ch62",
+      "path": "ch62.md"
+    },
+    {
+      "id": 63,
+      "title": "Ch63",
+      "path": "ch63.md"
+    },
+    {
+      "id": 64,
+      "title": "Ch64",
+      "path": "ch64.md"
+    },
+    {
+      "id": 65,
       "title": "Ch65",
       "path": "ch65.md"
     },
     {
-      "id": 59,
+      "id": 66,
       "title": "Ch66",
       "path": "ch66.md"
     },
     {
-      "id": 60,
+      "id": 67,
       "title": "Ch67",
       "path": "ch67.md"
     },
     {
-      "id": 61,
+      "id": 68,
       "title": "Ch68",
       "path": "ch68.md"
     },
     {
-      "id": 62,
+      "id": 69,
+      "title": "Ch69",
+      "path": "ch69.md"
+    },
+    {
+      "id": 70,
+      "title": "Ch70",
+      "path": "ch70.md"
+    },
+    {
+      "id": 71,
+      "title": "Ch71",
+      "path": "ch71.md"
+    },
+    {
+      "id": 72,
       "title": "Ch72",
       "path": "ch72.md"
     },
     {
-      "id": 63,
+      "id": 73,
       "title": "Ch73",
       "path": "ch73.md"
     },
     {
-      "id": 64,
+      "id": 74,
       "title": "Ch74",
       "path": "ch74.md"
+    },
+    {
+      "id": 75,
+      "title": "Ch75",
+      "path": "ch75.md"
+    },
+    {
+      "id": 76,
+      "title": "Ch76",
+      "path": "ch76.md"
+    },
+    {
+      "id": 77,
+      "title": "Ch77",
+      "path": "ch77.md"
+    },
+    {
+      "id": 78,
+      "title": "Ch78",
+      "path": "ch78.md"
+    },
+    {
+      "id": 79,
+      "title": "Ch79",
+      "path": "ch79.md"
+    },
+    {
+      "id": 80,
+      "title": "Ch80",
+      "path": "ch80.md"
+    },
+    {
+      "id": 81,
+      "title": "Ch81",
+      "path": "ch81.md"
+    },
+    {
+      "id": 82,
+      "title": "Ch82",
+      "path": "ch82.md"
+    },
+    {
+      "id": 83,
+      "title": "Ch83",
+      "path": "ch83.md"
+    },
+    {
+      "id": 84,
+      "title": "Ch84",
+      "path": "ch84.md"
+    },
+    {
+      "id": 85,
+      "title": "Ch85",
+      "path": "ch85.md"
+    },
+    {
+      "id": 86,
+      "title": "Ch86",
+      "path": "ch86.md"
+    },
+    {
+      "id": 87,
+      "title": "Ch87",
+      "path": "ch87.md"
+    },
+    {
+      "id": 88,
+      "title": "Ch88",
+      "path": "ch88.md"
+    },
+    {
+      "id": 89,
+      "title": "Ch89",
+      "path": "ch89.md"
     }
   ]
 }
