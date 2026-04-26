@@ -6,7 +6,7 @@
 
 Açık kaynaklı, Markdown tabanlı, topluluk destekli Türkçe light novel içerik deposu.
 
-[![Canlı Demo](https://img.shields.io/badge/🌐_Canlı_Okuyucu-openlibtr.vercel.app-black?style=for-the-badge)](https://openlibtr.vercel.app)
+[![Canlı Demo](https://img.shields.io/badge/🌐_Canlı_Okuyucu-okuttur.web.app-black?style=for-the-badge)](https://okuttur.web.app)
 
 [![License: MIT](https://img.shields.io/badge/Lisans-MIT-blue?style=flat-square)](LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/Katkı-Açık-brightgreen?style=flat-square)](CONTRIBUTING.md)
@@ -22,7 +22,7 @@ Açık kaynaklı, Markdown tabanlı, topluluk destekli Türkçe light novel içe
 
 Bu repo yalnızca **içerik deposudur**. Frontend okuyucu arayüzü ayrı bir projede geliştirilmekte olup bu veritabanını okuyarak canlıda sunmaktadır:
 
-> 🔗 **[openlibtr.vercel.app](https://openlibtr.vercel.app)** — Canlı okuyucu arayüzü
+> 🔗 **[okuttur.web.app](https://okuttur.web.app)** — Canlı okuyucu arayüzü
 
 ---
 
