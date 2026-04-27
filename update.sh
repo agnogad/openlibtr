@@ -2,7 +2,7 @@
 
 # 1. Önce kütüphane indekslerini güncelle (JS scriptini çalıştır)
 echo "🔄 İndeksler güncelleniyor..."
-node sync-library.js
+node lib/sync-library.js
 
 # 2. Değişiklikleri git'e ekle
 git add .
