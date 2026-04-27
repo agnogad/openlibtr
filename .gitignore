@@ -4,3 +4,4 @@ logs
 auth.json
 auth2.json
 auth*.json
+*.html
