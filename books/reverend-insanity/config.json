@@ -1,6 +1,6 @@
 {
   "slug": "reverend-insanity",
-  "total_chapters": 121,
+  "total_chapters": 142,
   "chapters": [
     {
       "id": 1,
@@ -606,6 +606,111 @@
       "id": 121,
       "title": "Ch121",
       "path": "ch121.md"
+    },
+    {
+      "id": 122,
+      "title": "Ch122",
+      "path": "ch122.md"
+    },
+    {
+      "id": 123,
+      "title": "Ch123",
+      "path": "ch123.md"
+    },
+    {
+      "id": 124,
+      "title": "Ch124",
+      "path": "ch124.md"
+    },
+    {
+      "id": 125,
+      "title": "Ch125",
+      "path": "ch125.md"
+    },
+    {
+      "id": 126,
+      "title": "Ch126",
+      "path": "ch126.md"
+    },
+    {
+      "id": 127,
+      "title": "Ch127",
+      "path": "ch127.md"
+    },
+    {
+      "id": 128,
+      "title": "Ch128",
+      "path": "ch128.md"
+    },
+    {
+      "id": 129,
+      "title": "Ch129",
+      "path": "ch129.md"
+    },
+    {
+      "id": 130,
+      "title": "Ch130",
+      "path": "ch130.md"
+    },
+    {
+      "id": 131,
+      "title": "Ch131",
+      "path": "ch131.md"
+    },
+    {
+      "id": 132,
+      "title": "Ch132",
+      "path": "ch132.md"
+    },
+    {
+      "id": 133,
+      "title": "Ch133",
+      "path": "ch133.md"
+    },
+    {
+      "id": 134,
+      "title": "Ch134",
+      "path": "ch134.md"
+    },
+    {
+      "id": 135,
+      "title": "Ch135",
+      "path": "ch135.md"
+    },
+    {
+      "id": 136,
+      "title": "Ch136",
+      "path": "ch136.md"
+    },
+    {
+      "id": 137,
+      "title": "Ch137",
+      "path": "ch137.md"
+    },
+    {
+      "id": 138,
+      "title": "Ch138",
+      "path": "ch138.md"
+    },
+    {
+      "id": 139,
+      "title": "Ch139",
+      "path": "ch139.md"
+    },
+    {
+      "id": 140,
+      "title": "Ch140",
+      "path": "ch140.md"
+    },
+    {
+      "id": 141,
+      "title": "Ch141",
+      "path": "ch141.md"
+    },
+    {
+      "id": 142,
+      "title": "Ch142",
+      "path": "ch142.md"
     }
   ]
 }
