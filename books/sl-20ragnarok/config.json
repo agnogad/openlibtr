@@ -1,6 +1,6 @@
 {
   "slug": "sl-20ragnarok",
-  "total_chapters": 267,
+  "total_chapters": 297,
   "chapters": [
     {
       "id": 1,
@@ -1336,6 +1336,156 @@
       "id": 267,
       "title": "Ch267",
       "path": "ch267.md"
+    },
+    {
+      "id": 268,
+      "title": "Ch268",
+      "path": "ch268.md"
+    },
+    {
+      "id": 269,
+      "title": "Ch269",
+      "path": "ch269.md"
+    },
+    {
+      "id": 270,
+      "title": "Ch270",
+      "path": "ch270.md"
+    },
+    {
+      "id": 271,
+      "title": "Ch271",
+      "path": "ch271.md"
+    },
+    {
+      "id": 272,
+      "title": "Ch272",
+      "path": "ch272.md"
+    },
+    {
+      "id": 273,
+      "title": "Ch273",
+      "path": "ch273.md"
+    },
+    {
+      "id": 274,
+      "title": "Ch274",
+      "path": "ch274.md"
+    },
+    {
+      "id": 275,
+      "title": "Ch275",
+      "path": "ch275.md"
+    },
+    {
+      "id": 276,
+      "title": "Ch276",
+      "path": "ch276.md"
+    },
+    {
+      "id": 277,
+      "title": "Ch277",
+      "path": "ch277.md"
+    },
+    {
+      "id": 278,
+      "title": "Ch278",
+      "path": "ch278.md"
+    },
+    {
+      "id": 279,
+      "title": "Ch279",
+      "path": "ch279.md"
+    },
+    {
+      "id": 280,
+      "title": "Ch280",
+      "path": "ch280.md"
+    },
+    {
+      "id": 281,
+      "title": "Ch281",
+      "path": "ch281.md"
+    },
+    {
+      "id": 282,
+      "title": "Ch282",
+      "path": "ch282.md"
+    },
+    {
+      "id": 283,
+      "title": "Ch283",
+      "path": "ch283.md"
+    },
+    {
+      "id": 284,
+      "title": "Ch284",
+      "path": "ch284.md"
+    },
+    {
+      "id": 285,
+      "title": "Ch285",
+      "path": "ch285.md"
+    },
+    {
+      "id": 286,
+      "title": "Ch286",
+      "path": "ch286.md"
+    },
+    {
+      "id": 287,
+      "title": "Ch287",
+      "path": "ch287.md"
+    },
+    {
+      "id": 288,
+      "title": "Ch288",
+      "path": "ch288.md"
+    },
+    {
+      "id": 289,
+      "title": "Ch289",
+      "path": "ch289.md"
+    },
+    {
+      "id": 290,
+      "title": "Ch290",
+      "path": "ch290.md"
+    },
+    {
+      "id": 291,
+      "title": "Ch291",
+      "path": "ch291.md"
+    },
+    {
+      "id": 292,
+      "title": "Ch292",
+      "path": "ch292.md"
+    },
+    {
+      "id": 293,
+      "title": "Ch293",
+      "path": "ch293.md"
+    },
+    {
+      "id": 294,
+      "title": "Ch294",
+      "path": "ch294.md"
+    },
+    {
+      "id": 295,
+      "title": "Ch295",
+      "path": "ch295.md"
+    },
+    {
+      "id": 296,
+      "title": "Ch296",
+      "path": "ch296.md"
+    },
+    {
+      "id": 297,
+      "title": "Ch297",
+      "path": "ch297.md"
     }
   ]
 }
