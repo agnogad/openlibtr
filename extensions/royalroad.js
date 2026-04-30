@@ -8,7 +8,7 @@ module.exports = {
     label: '👑 Royal Road  (İngilizce orijinal web novellar)',
 
     getInstance: async () => {
-        const mod = await import('../lib/royalroad.js');
+        const mod = await import('../lib/royalroad.mjs');
         return new mod.default({ enableVol: false });
     },
 };

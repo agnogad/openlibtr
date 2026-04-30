@@ -8,7 +8,7 @@ module.exports = {
     label: '👑 NovelUpdates  (İngilizce orijinal web novellar)',
 
     getInstance: async () => {
-        const mod = await import('../lib/novelupdates.js');
+        const mod = await import('../lib/novelupdates.mjs');
         return new mod.default({ enableVol: false });
     },
 };

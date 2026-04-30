@@ -3,7 +3,7 @@ module.exports = {
     label: '👑 WTR Lab  (İngilizce orijinal web novellar)',
 
     getInstance: async () => {
-        const mod = await import('../lib/wtrlab.js');
+        const mod = await import('../lib/wtrlab.mjs');
         return new mod.default({ enableVol: false });
     },
 };

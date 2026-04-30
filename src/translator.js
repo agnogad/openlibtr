@@ -3,12 +3,9 @@
  * AI çeviri katmanı.
  */
 
-const aisdk = require('../lib/aisdk.js');
-
-// AI istemcisini bir kez oluştur
-const client = new aisdk.PiAiClient({
-    accounts: [aisdk.AccountPresets.geminiCli()],
-});
+// AI istemcisini bir kez oluşturmak için placeholder
+let client;
+let AccountPresets;
 
 /**
  * İngilizce metni Türkçe'ye çevirir.
@@ -19,6 +16,13 @@ const client = new aisdk.PiAiClient({
  * @returns {Promise<string>} Çevrilmiş (veya orijinal) metin
  */
 async function translate(content, chapterNum) {
+    if (!client) {
+        const aisdk = await import('../lib/aisdk.mjs');
+        AccountPresets = aisdk.AccountPresets;
+        client = new aisdk.PiAiClient({
+            accounts: [AccountPresets.geminiCli()],
+        });
+    }
     // Zaten Türkçe içerik – çevirme
     if (content.includes("ğ")) {
         console.log(`ℹ️  Bölüm ${chapterNum} zaten Türkçe, çeviri atlanıyor.`);

@@ -8,7 +8,7 @@ module.exports = {
     label: '👑 Webnovel  (İngilizce orijinal web novellar)',
 
     getInstance: async () => {
-        const mod = await import('../lib/webnovel.js');
+        const mod = await import('../lib/webnovel.mjs');
         return new mod.default({ enableVol: false });
     },
 };

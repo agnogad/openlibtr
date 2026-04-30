@@ -13,26 +13,29 @@ const { execSync } = require('child_process');
  * @returns {Promise<{selectedNovelPath: string, selectedNovelSlug: string}>}
  */
 async function searchAndSelect(plugin, sourceId) {
+    const { default: chalk } = await import('chalk');
+    const { default: ora }   = await import('ora');
     const sourceLabel = plugin.id || sourceId;
 
     const { searchTerm } = await inquirer.prompt([{
         type:    'input',
         name:    'searchTerm',
-        message: `${sourceLabel}'da novel ara:`,
+        message: `${chalk.blue(sourceLabel)} üzerinde ara:`,
     }]);
 
-    console.log("🔍 Aranıyor...");
+    const spinner = ora('Aranıyor...').start();
     const results = await plugin.searchNovels(searchTerm, 1);
 
     if (results.length === 0) {
-        console.log("❌ Sonuç bulunamadı.");
+        spinner.fail(chalk.red('Sonuç bulunamadı.'));
         return {};
     }
+    spinner.succeed(chalk.green(`${results.length} sonuç bulundu.`));
 
     const { chosen } = await inquirer.prompt([{
         type:    'list',
         name:    'chosen',
-        message: 'Novel seçin:',
+        message: 'Devam etmek istediğiniz novelı seçin:',
         choices: results.map(n => ({ name: n.name, value: n })),
     }]);
 
@@ -52,12 +55,13 @@ async function searchAndSelect(plugin, sourceId) {
  * @returns {Promise<object>} novel nesnesi (chapters dahil)
  */
 async function fetchAndSaveMeta(plugin, novelDir, selectedNovelPath, sourceId) {
-    console.log("🔍 Novel bilgileri alınıyor...");
+    const { default: chalk } = await import('chalk');
+    const { default: ora }   = await import('ora');
     const novel = await plugin.parseNovel(selectedNovelPath);
 
     const IS_DEBUG = process.argv.includes('--debug') || process.env.DEBUG;
     if (IS_DEBUG && (!novel.chapters || novel.chapters.length === 0)) {
-        console.log("[DEBUG] Novel object contains no chapters:", JSON.stringify(novel, null, 2));
+        console.log(chalk.gray(`[DEBUG] No chapters found for ${novel.name}`));
     }
 
     await fs.writeJson(path.join(novelDir, 'meta.json'), {
@@ -73,12 +77,12 @@ async function fetchAndSaveMeta(plugin, novelDir, selectedNovelPath, sourceId) {
     // Kapak resmi
     const coverPath = path.join(novelDir, 'cover.jpg');
     if (!await fs.pathExists(coverPath) && novel.cover) {
-        console.log("📸 Kapak indiriliyor...");
+        const coverSpinner = ora('Kapak resmi indiriliyor...').start();
         try {
             execSync(`curl -s -L "${novel.cover}" -o "${coverPath}"`);
-            console.log("✅ Kapak kaydedildi.");
+            coverSpinner.succeed(chalk.green('Kapak resmi kaydedildi.'));
         } catch {
-            console.log("⚠️ Kapak indirilemedi.");
+            coverSpinner.warn(chalk.yellow('Kapak resmi indirilemedi.'));
         }
     }
 
