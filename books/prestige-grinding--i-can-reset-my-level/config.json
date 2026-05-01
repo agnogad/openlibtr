@@ -1,6 +1,6 @@
 {
   "slug": "prestige-grinding--i-can-reset-my-level",
-  "total_chapters": 14,
+  "total_chapters": 18,
   "chapters": [
     {
       "id": 1,
@@ -71,6 +71,26 @@
       "id": 14,
       "title": "Ch14",
       "path": "ch14.md"
+    },
+    {
+      "id": 15,
+      "title": "Ch15",
+      "path": "ch15.md"
+    },
+    {
+      "id": 16,
+      "title": "Ch16",
+      "path": "ch16.md"
+    },
+    {
+      "id": 17,
+      "title": "Ch17",
+      "path": "ch17.md"
+    },
+    {
+      "id": 18,
+      "title": "Ch18",
+      "path": "ch18.md"
     }
   ]
 }
