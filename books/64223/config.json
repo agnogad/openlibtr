@@ -1,6 +1,6 @@
 {
   "slug": "64223",
-  "total_chapters": 25,
+  "total_chapters": 26,
   "chapters": [
     {
       "id": 1,
@@ -126,6 +126,11 @@
       "id": 25,
       "title": "Ch25",
       "path": "ch25.md"
+    },
+    {
+      "id": 26,
+      "title": "Ch26",
+      "path": "ch26.md"
     }
   ]
 }
