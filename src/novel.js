@@ -79,9 +79,15 @@ async function fetchAndSaveMeta(plugin, novelDir, selectedNovelPath, sourceId) {
     if (!await fs.pathExists(coverPath) && novel.cover) {
         const coverSpinner = ora('Kapak resmi indiriliyor...').start();
         try {
-            execSync(`curl -s -L "${novel.cover}" -o "${coverPath}"`);
+            if (typeof plugin.downloadImage === 'function') {
+                const buffer = await plugin.downloadImage(novel.cover);
+                await fs.writeFile(coverPath, buffer);
+            } else {
+                execSync(`curl -s -L "${novel.cover}" -o "${coverPath}"`);
+            }
             coverSpinner.succeed(chalk.green('Kapak resmi kaydedildi.'));
-        } catch {
+        } catch (err) {
+            if (IS_DEBUG) console.error(chalk.red(`[DEBUG] Image download error: ${err.message}`));
             coverSpinner.warn(chalk.yellow('Kapak resmi indirilemedi.'));
         }
     }
