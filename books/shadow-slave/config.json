@@ -1,6 +1,6 @@
 {
   "slug": "shadow-slave",
-  "total_chapters": 44,
+  "total_chapters": 64,
   "chapters": [
     {
       "id": 1,
@@ -221,6 +221,106 @@
       "id": 44,
       "title": "Ch44",
       "path": "ch44.md"
+    },
+    {
+      "id": 45,
+      "title": "Ch45",
+      "path": "ch45.md"
+    },
+    {
+      "id": 46,
+      "title": "Ch46",
+      "path": "ch46.md"
+    },
+    {
+      "id": 47,
+      "title": "Ch47",
+      "path": "ch47.md"
+    },
+    {
+      "id": 48,
+      "title": "Ch48",
+      "path": "ch48.md"
+    },
+    {
+      "id": 49,
+      "title": "Ch49",
+      "path": "ch49.md"
+    },
+    {
+      "id": 50,
+      "title": "Ch50",
+      "path": "ch50.md"
+    },
+    {
+      "id": 51,
+      "title": "Ch51",
+      "path": "ch51.md"
+    },
+    {
+      "id": 52,
+      "title": "Ch52",
+      "path": "ch52.md"
+    },
+    {
+      "id": 53,
+      "title": "Ch53",
+      "path": "ch53.md"
+    },
+    {
+      "id": 54,
+      "title": "Ch54",
+      "path": "ch54.md"
+    },
+    {
+      "id": 55,
+      "title": "Ch55",
+      "path": "ch55.md"
+    },
+    {
+      "id": 56,
+      "title": "Ch56",
+      "path": "ch56.md"
+    },
+    {
+      "id": 57,
+      "title": "Ch57",
+      "path": "ch57.md"
+    },
+    {
+      "id": 58,
+      "title": "Ch58",
+      "path": "ch58.md"
+    },
+    {
+      "id": 59,
+      "title": "Ch59",
+      "path": "ch59.md"
+    },
+    {
+      "id": 60,
+      "title": "Ch60",
+      "path": "ch60.md"
+    },
+    {
+      "id": 61,
+      "title": "Ch61",
+      "path": "ch61.md"
+    },
+    {
+      "id": 62,
+      "title": "Ch62",
+      "path": "ch62.md"
+    },
+    {
+      "id": 63,
+      "title": "Ch63",
+      "path": "ch63.md"
+    },
+    {
+      "id": 64,
+      "title": "Ch64",
+      "path": "ch64.md"
     }
   ]
 }
