@@ -1,6 +1,6 @@
 {
   "slug": "slime-evolution",
-  "total_chapters": 53,
+  "total_chapters": 55,
   "chapters": [
     {
       "id": 1,
@@ -259,11 +259,21 @@
     },
     {
       "id": 52,
+      "title": "Ch55",
+      "path": "ch55.md"
+    },
+    {
+      "id": 53,
       "title": "Ch57",
       "path": "ch57.md"
     },
     {
-      "id": 53,
+      "id": 54,
+      "title": "Ch58",
+      "path": "ch58.md"
+    },
+    {
+      "id": 55,
       "title": "Ch59",
       "path": "ch59.md"
     }

@@ -10,7 +10,7 @@ const inquirer = require('inquirer');
 const { loadExtensions }                             = require('../extensions/loader');
 const { sendTermuxNotification }                     = require('./notifier');
 const { searchAndSelect, fetchAndSaveMeta,
-        getMissingChapters }                         = require('./novel');
+        getMissingChapters, fixMissingCovers }       = require('./novel');
 const { processChapter }                             = require('./chapter');
 
 const BOOKS_DIR = path.join(__dirname, '..', 'books');
@@ -74,6 +74,11 @@ async function start() {
         }
     }
     scanSpinner.stop();
+
+    // Provider'a ait kapaksız novellerin cover'larını indir
+    if (providerFolders.length > 0) {
+        await fixMissingCovers(plugin, providerFolders, BOOKS_DIR);
+    }
 
     let selectedNovelPath;
     let selectedNovelSlug;
@@ -152,18 +157,29 @@ async function start() {
     
     sendTermuxNotification(0, targetChapterNums.length, "progress");
 
-    // ── 6. Bölümleri işle ────────────────────────────────────────────────────
+    // ── 6. Bölümleri paralel işle (5 adet aynı anda) ─────────────────────────
+    const CONCURRENCY = 5;
     let successCount = 0;
-    for (let i = 0; i < targetChapterNums.length; i++) {
-        const chNum   = targetChapterNums[i];
-        const chapter = allChapters[chNum - 1];
+    let completedCount = 0;
+    const total = targetChapterNums.length;
 
-        if (!chapter) break;
+    for (let i = 0; i < total; i += CONCURRENCY) {
+        const batch = targetChapterNums.slice(i, i + CONCURRENCY);
 
-        const result = await processChapter(plugin, novelDir, chapter, chNum, IS_DEBUG);
-        if (result) successCount++;
-        
-        sendTermuxNotification(i + 1, targetChapterNums.length, "progress");
+        const results = await Promise.all(batch.map(async (chNum, idx) => {
+            const chapter = allChapters[chNum - 1];
+            if (!chapter) return false;
+
+            // Her paralel görev arasında 1sn gecikme (rate-limit koruması)
+            if (idx > 0) await new Promise(r => setTimeout(r, 1000 * idx));
+
+            const result = await processChapter(plugin, novelDir, chapter, chNum, IS_DEBUG);
+            return result;
+        }));
+
+        successCount += results.filter(Boolean).length;
+        completedCount += batch.length;
+        sendTermuxNotification(completedCount, total, "progress");
     }
 
     // ── 7. Kapanış ve Sync ───────────────────────────────────────────────────

@@ -25,12 +25,6 @@ function htmlToText(html) {
         .trim();
 }
 
-/** Throttle: 2.5 – 5.5 sn */
-function randomDelay() {
-    const ms = Math.floor(Math.random() * 3000) + 2500;
-    return new Promise(res => setTimeout(res, ms));
-}
-
 /**
  * Tek bir bölümü işler: çeker → temizler → çevirir → kaydeder.
  *
@@ -83,7 +77,6 @@ async function processChapter(plugin, novelDir, chapter, chapterNum, isDebug = f
         await fs.writeFile(filePath, translated.trim(), 'utf-8');
         spinner.succeed(chalk.green(`[Bölüm ${chapterNum}] Tamamlandı: ${chapter.name.slice(0, 30)}${chapter.name.length > 30 ? '...' : ''}`));
 
-        await randomDelay();
         return true;
 
     } catch (err) {

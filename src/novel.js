@@ -72,25 +72,11 @@ async function fetchAndSaveMeta(plugin, novelDir, selectedNovelPath, sourceId) {
         status:  novel.status,
         genres:  novel.genres,
         summary: novel.summary,
+        cover:   novel.cover || '',
     }, { spaces: 2 });
 
     // Kapak resmi
-    const coverPath = path.join(novelDir, 'cover.jpg');
-    if (!await fs.pathExists(coverPath) && novel.cover) {
-        const coverSpinner = ora('Kapak resmi indiriliyor...').start();
-        try {
-            if (typeof plugin.downloadImage === 'function') {
-                const buffer = await plugin.downloadImage(novel.cover);
-                await fs.writeFile(coverPath, buffer);
-            } else {
-                execSync(`curl -s -L "${novel.cover}" -o "${coverPath}"`);
-            }
-            coverSpinner.succeed(chalk.green('Kapak resmi kaydedildi.'));
-        } catch (err) {
-            if (IS_DEBUG) console.error(chalk.red(`[DEBUG] Image download error: ${err.message}`));
-            coverSpinner.warn(chalk.yellow('Kapak resmi indirilemedi.'));
-        }
-    }
+    await downloadCover(plugin, novel.cover, novelDir);
 
     return novel;
 }
@@ -117,5 +103,82 @@ function getMissingChapters(existingFiles, totalChapters, requestedCount) {
     return missing;
 }
 
-module.exports = { searchAndSelect, fetchAndSaveMeta, getMissingChapters };
+/**
+ * Kapak resmini indirir (eğer yoksa).
+ * @param {object} plugin
+ * @param {string} coverUrl
+ * @param {string} novelDir
+ */
+async function downloadCover(plugin, coverUrl, novelDir) {
+    const { default: chalk } = await import('chalk');
+    const { default: ora }   = await import('ora');
+    const IS_DEBUG = process.argv.includes('--debug') || process.env.DEBUG;
+    const coverPath = path.join(novelDir, 'cover.jpg');
+
+    if (await fs.pathExists(coverPath) || !coverUrl) return;
+
+    const spinner = ora('Kapak resmi indiriliyor...').start();
+    try {
+        if (typeof plugin.downloadImage === 'function') {
+            const buffer = await plugin.downloadImage(coverUrl);
+            await fs.writeFile(coverPath, buffer);
+        } else {
+            execSync(`curl -s -L "${coverUrl}" -o "${coverPath}"`);
+        }
+        spinner.succeed(chalk.green('Kapak resmi kaydedildi.'));
+    } catch (err) {
+        if (IS_DEBUG) console.error(chalk.red(`[DEBUG] Image download error: ${err.message}`));
+        spinner.warn(chalk.yellow('Kapak resmi indirilemedi.'));
+    }
+}
+
+/**
+ * Seçili providere ait kapaksız novelleri tarar ve cover'larını indirir.
+ * @param {object} plugin
+ * @param {Array<{value: string}>} providerFolders
+ * @param {string} booksDir
+ * @returns {Promise<number>} indirilen kapak sayısı
+ */
+async function fixMissingCovers(plugin, providerFolders, booksDir) {
+    const { default: chalk } = await import('chalk');
+    const { default: ora }   = await import('ora');
+    const IS_DEBUG = process.argv.includes('--debug') || process.env.DEBUG;
+
+    const spinner = ora('Eksik kapak resimleri taranıyor...').start();
+    let fixed = 0;
+
+    for (const folder of providerFolders) {
+        const novelDir = path.join(booksDir, folder.value);
+        const coverPath = path.join(novelDir, 'cover.jpg');
+        const metaPath  = path.join(novelDir, 'meta.json');
+
+        if (await fs.pathExists(coverPath)) continue;
+
+        try {
+            const meta = await fs.readJson(metaPath);
+
+            if (meta.cover) {
+                await downloadCover(plugin, meta.cover, novelDir);
+                fixed++;
+            } else {
+                // Eski meta.json — yeniden çek
+                await fetchAndSaveMeta(plugin, novelDir, meta.path, plugin.id);
+                fixed++;
+            }
+        } catch (e) {
+            if (IS_DEBUG) console.error(`Cover error for ${folder.value}:`, e.message);
+        }
+    }
+
+    if (fixed > 0) {
+        spinner.succeed(chalk.green(`${fixed} kapak resmi indirildi.`));
+    } else {
+        spinner.stop();
+        console.log(chalk.gray('ℹ️  Tüm kapak resimleri mevcut.'));
+    }
+
+    return fixed;
+}
+
+module.exports = { searchAndSelect, fetchAndSaveMeta, getMissingChapters, fixMissingCovers };
 

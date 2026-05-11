@@ -7,7 +7,7 @@ const path = require('path');
 const { exec } = require('child_process');
 
 const { loadExtensions } = require('./extensions/loader');
-const { fetchAndSaveMeta, getMissingChapters } = require('./src/novel');
+const { fetchAndSaveMeta, getMissingChapters, fixMissingCovers } = require('./src/novel');
 const { processChapter } = require('./src/chapter');
 const { sendTermuxNotification } = require('./src/notifier');
 
@@ -147,30 +147,42 @@ app.post('/api/process', async (req, res) => {
             io.emit('task-started', { novelSlug, total: targetChapterNums.length, chapters: targetChapterNums });
             sendTermuxNotification(0, targetChapterNums.length, "progress");
 
+            const CONCURRENCY = 5;
             let successCount = 0;
-            for (let i = 0; i < targetChapterNums.length; i++) {
-                const chNum = targetChapterNums[i];
-                const chapter = allChapters[chNum - 1];
-                const logMsg = `Processing Ch ${chNum}: ${chapter.name}`;
-                
-                activeTasks[novelSlug].current = i + 1;
-                activeTasks[novelSlug].lastChapter = logMsg;
-                activeTasks[novelSlug].logs.unshift(logMsg);
-                if (activeTasks[novelSlug].logs.length > 10) activeTasks[novelSlug].logs.pop();
+            let completedCount = 0;
+            const totalCh = targetChapterNums.length;
 
-                io.emit('task-progress', { 
-                    novelSlug, 
-                    current: i + 1, 
-                    total: targetChapterNums.length, 
-                    chapterNum: chNum,
-                    chapterName: chapter.name 
-                });
+            for (let i = 0; i < totalCh; i += CONCURRENCY) {
+                const batch = targetChapterNums.slice(i, i + CONCURRENCY);
 
-                const result = await processChapter(plugin, novelDir, chapter, chNum);
-                if (result) successCount++;
-                
-                activeTasks[novelSlug].progress = ((i + 1) / targetChapterNums.length) * 100;
-                sendTermuxNotification(i + 1, targetChapterNums.length, "progress");
+                const results = await Promise.all(batch.map(async (chNum, idx) => {
+                    const chapter = allChapters[chNum - 1];
+                    if (!chapter) return false;
+
+                    const logMsg = `Processing Ch ${chNum}: ${chapter.name}`;
+                    activeTasks[novelSlug].lastChapter = logMsg;
+                    activeTasks[novelSlug].logs.unshift(logMsg);
+                    if (activeTasks[novelSlug].logs.length > 10) activeTasks[novelSlug].logs.pop();
+
+                    io.emit('task-progress', {
+                        novelSlug,
+                        current: completedCount + idx + 1,
+                        total: totalCh,
+                        chapterNum: chNum,
+                        chapterName: chapter.name
+                    });
+
+                    if (idx > 0) await new Promise(r => setTimeout(r, 1000 * idx));
+
+                    const result = await processChapter(plugin, novelDir, chapter, chNum);
+                    return result;
+                }));
+
+                successCount += results.filter(Boolean).length;
+                completedCount += batch.length;
+                activeTasks[novelSlug].current = completedCount;
+                activeTasks[novelSlug].progress = (completedCount / totalCh) * 100;
+                sendTermuxNotification(completedCount, totalCh, "progress");
             }
 
             // Sync library
@@ -194,6 +206,38 @@ app.post('/api/process', async (req, res) => {
 
 app.get('/api/active-tasks', (req, res) => {
     res.json(activeTasks);
+});
+
+app.post('/api/fix-covers', async (req, res) => {
+    const { sourceId } = req.body;
+    const ext = extensions.find(e => e.id === sourceId);
+    if (!ext) return res.status(400).json({ error: 'Extension not found' });
+
+    try {
+        const plugin = await ext.getInstance();
+        const BOOKS_DIR = path.join(__dirname, 'books');
+        const allFolders = (await fs.readdir(BOOKS_DIR, { withFileTypes: true }))
+            .filter(d => d.isDirectory())
+            .map(d => d.name);
+
+        const providerFolders = [];
+        for (const folder of allFolders) {
+            const metaPath = path.join(BOOKS_DIR, folder, 'meta.json');
+            if (await fs.pathExists(metaPath)) {
+                try {
+                    const meta = await fs.readJson(metaPath);
+                    if (meta.source === sourceId) {
+                        providerFolders.push({ value: folder });
+                    }
+                } catch {}
+            }
+        }
+
+        const fixed = await fixMissingCovers(plugin, providerFolders, BOOKS_DIR);
+        res.json({ fixed });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
 });
 
 server.listen(PORT, () => {
