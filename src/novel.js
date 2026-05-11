@@ -157,12 +157,17 @@ async function fixMissingCovers(plugin, providerFolders, booksDir) {
         try {
             const meta = await fs.readJson(metaPath);
 
-            if (meta.cover) {
-                await downloadCover(plugin, meta.cover, novelDir);
-                fixed++;
-            } else {
-                // Eski meta.json — yeniden çek
-                await fetchAndSaveMeta(plugin, novelDir, meta.path, plugin.id);
+            // Her zaman parseNovel'u çağır - yeni doğru cover URL'ini almak için
+            const novel = await plugin.parseNovel(meta.path);
+            
+            // meta.json'ı güncelle ve cover'ı indir
+            await fs.writeJson(metaPath, {
+                ...meta,
+                cover: novel.cover,
+            }, { spaces: 2 });
+            
+            if (novel.cover) {
+                await downloadCover(plugin, novel.cover, novelDir);
                 fixed++;
             }
         } catch (e) {
