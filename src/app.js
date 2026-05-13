@@ -158,7 +158,7 @@ async function start() {
     sendTermuxNotification(0, targetChapterNums.length, "progress");
 
     // ── 6. Bölümleri paralel işle (5 adet aynı anda) ─────────────────────────
-    const CONCURRENCY = 5;
+    const CONCURRENCY = 1;
     let successCount = 0;
     let completedCount = 0;
     const total = targetChapterNums.length;
