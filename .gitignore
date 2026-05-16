@@ -6,3 +6,4 @@ auth2.json
 auth*.json
 *.html
 example/
+*.json
