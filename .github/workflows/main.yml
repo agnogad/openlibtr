@@ -1,0 +1,37 @@
+name: Sync Library Index
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'books/**'
+  workflow_dispatch: # Manuel tetikleme için
+
+jobs:
+  sync:
+    name: Sync Library
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write # library.json ve config.json dosyalarını commit etmek için
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run sync script
+        run: node sync-library.js
+
+      - name: Commit updated index files
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add library.json books/**/config.json
+          git diff --staged --quiet || git commit -m "chore: sync library index [skip ci]"
+          git push
