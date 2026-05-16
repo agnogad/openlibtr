@@ -1,6 +1,6 @@
 {
   "slug": "shadow-slave",
-  "total_chapters": 243,
+  "total_chapters": 284,
   "chapters": [
     {
       "id": 1,
@@ -1216,6 +1216,211 @@
       "id": 243,
       "title": "Ch243",
       "path": "ch243.md"
+    },
+    {
+      "id": 244,
+      "title": "Ch244",
+      "path": "ch244.md"
+    },
+    {
+      "id": 245,
+      "title": "Ch245",
+      "path": "ch245.md"
+    },
+    {
+      "id": 246,
+      "title": "Ch246",
+      "path": "ch246.md"
+    },
+    {
+      "id": 247,
+      "title": "Ch247",
+      "path": "ch247.md"
+    },
+    {
+      "id": 248,
+      "title": "Ch248",
+      "path": "ch248.md"
+    },
+    {
+      "id": 249,
+      "title": "Ch249",
+      "path": "ch249.md"
+    },
+    {
+      "id": 250,
+      "title": "Ch250",
+      "path": "ch250.md"
+    },
+    {
+      "id": 251,
+      "title": "Ch251",
+      "path": "ch251.md"
+    },
+    {
+      "id": 252,
+      "title": "Ch252",
+      "path": "ch252.md"
+    },
+    {
+      "id": 253,
+      "title": "Ch253",
+      "path": "ch253.md"
+    },
+    {
+      "id": 254,
+      "title": "Ch254",
+      "path": "ch254.md"
+    },
+    {
+      "id": 255,
+      "title": "Ch255",
+      "path": "ch255.md"
+    },
+    {
+      "id": 256,
+      "title": "Ch256",
+      "path": "ch256.md"
+    },
+    {
+      "id": 257,
+      "title": "Ch257",
+      "path": "ch257.md"
+    },
+    {
+      "id": 258,
+      "title": "Ch258",
+      "path": "ch258.md"
+    },
+    {
+      "id": 259,
+      "title": "Ch259",
+      "path": "ch259.md"
+    },
+    {
+      "id": 260,
+      "title": "Ch260",
+      "path": "ch260.md"
+    },
+    {
+      "id": 261,
+      "title": "Ch261",
+      "path": "ch261.md"
+    },
+    {
+      "id": 262,
+      "title": "Ch262",
+      "path": "ch262.md"
+    },
+    {
+      "id": 263,
+      "title": "Ch263",
+      "path": "ch263.md"
+    },
+    {
+      "id": 264,
+      "title": "Ch264",
+      "path": "ch264.md"
+    },
+    {
+      "id": 265,
+      "title": "Ch265",
+      "path": "ch265.md"
+    },
+    {
+      "id": 266,
+      "title": "Ch266",
+      "path": "ch266.md"
+    },
+    {
+      "id": 267,
+      "title": "Ch267",
+      "path": "ch267.md"
+    },
+    {
+      "id": 268,
+      "title": "Ch268",
+      "path": "ch268.md"
+    },
+    {
+      "id": 269,
+      "title": "Ch269",
+      "path": "ch269.md"
+    },
+    {
+      "id": 270,
+      "title": "Ch270",
+      "path": "ch270.md"
+    },
+    {
+      "id": 271,
+      "title": "Ch271",
+      "path": "ch271.md"
+    },
+    {
+      "id": 272,
+      "title": "Ch272",
+      "path": "ch272.md"
+    },
+    {
+      "id": 273,
+      "title": "Ch273",
+      "path": "ch273.md"
+    },
+    {
+      "id": 274,
+      "title": "Ch274",
+      "path": "ch274.md"
+    },
+    {
+      "id": 275,
+      "title": "Ch275",
+      "path": "ch275.md"
+    },
+    {
+      "id": 276,
+      "title": "Ch276",
+      "path": "ch276.md"
+    },
+    {
+      "id": 277,
+      "title": "Ch277",
+      "path": "ch277.md"
+    },
+    {
+      "id": 278,
+      "title": "Ch278",
+      "path": "ch278.md"
+    },
+    {
+      "id": 279,
+      "title": "Ch279",
+      "path": "ch279.md"
+    },
+    {
+      "id": 280,
+      "title": "Ch280",
+      "path": "ch280.md"
+    },
+    {
+      "id": 281,
+      "title": "Ch281",
+      "path": "ch281.md"
+    },
+    {
+      "id": 282,
+      "title": "Ch282",
+      "path": "ch282.md"
+    },
+    {
+      "id": 283,
+      "title": "Ch283",
+      "path": "ch283.md"
+    },
+    {
+      "id": 284,
+      "title": "Ch284",
+      "path": "ch284.md"
     }
   ]
 }
