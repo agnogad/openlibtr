@@ -32,6 +32,7 @@ jobs:
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add library.json books/**/config.json
+          git add library.json
+          git add -f books/**/config.json
           git diff --staged --quiet || git commit -m "chore: sync library index [skip ci]"
           git push
