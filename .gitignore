@@ -7,3 +7,4 @@ auth*.json
 *.html
 example/
 *.json
+*.yml
