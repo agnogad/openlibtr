@@ -27,10 +27,10 @@ function syncLibrary() {
         
         if (fs.lstatSync(folderPath).isDirectory()) {
             const files = fs.readdirSync(folderPath)
-                .filter(file => file.endsWith('.md'))
+                .filter(file => /^ch\d+\.md$/.test(file))
                 .sort((a, b) => {
-                    const numA = parseInt(a.match(/\d+/) || 0);
-                    const numB = parseInt(b.match(/\d+/) || 0);
+                    const numA = parseInt(a.match(/\d+/)[0]);
+                    const numB = parseInt(b.match(/\d+/)[0]);
                     return numA - numB;
                 });
 
@@ -43,21 +43,19 @@ function syncLibrary() {
                 };
             });
 
-            // --- BAŞLIK BELİRLEME MANTIĞI (Yeni Kısım) ---
             const metaPath = path.join(folderPath, 'meta.json');
-            let displayTitle = folder.replace(/-/g, ' ').toUpperCase(); // Varsayılan yöntem
+            let displayTitle = folder.replace(/-/g, ' ').toUpperCase();
 
             if (fs.existsSync(metaPath)) {
                 try {
                     const metaData = JSON.parse(fs.readFileSync(metaPath, 'utf-8'));
                     if (metaData.name) {
-                        displayTitle = metaData.name; // meta.json varsa oradan al
+                        displayTitle = metaData.name;
                     }
                 } catch (e) {
                     console.error(`⚠️ ${folder} içindeki meta.json okunamadı, klasör ismi kullanılıyor.`);
                 }
             }
-            // --------------------------------------------
 
             const configPath = path.join(folderPath, 'config.json');
             fs.writeFileSync(configPath, JSON.stringify({
@@ -77,7 +75,7 @@ function syncLibrary() {
             }
 
             libraryIndex.push({
-                title: displayTitle, // Belirlenen başlığı kullan
+                title: displayTitle,
                 slug: folder,
                 chapterCount: chapters.length,
                 lastUpdated: lastUpdated
